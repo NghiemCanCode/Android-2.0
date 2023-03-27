@@ -10,5 +10,6 @@ public class App extends Application {
         super.onCreate();
         archeryDB = new ArcheryDB(this);
         archeryDB.copyDatabase();
+
     }
 }

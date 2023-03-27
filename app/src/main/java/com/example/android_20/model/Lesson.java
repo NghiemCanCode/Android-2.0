@@ -1,6 +1,8 @@
 package com.example.android_20.model;
 
-public class Lesson  {
+import java.io.Serializable;
+
+public class Lesson implements Serializable {
     private int IDLesson;
     private int IDClass;
     private int IDSubject;
@@ -9,6 +11,9 @@ public class Lesson  {
     private String Content;
     private int Marked;
     private int View;
+
+
+    public Lesson(){}
 
     public Lesson(int IDLesson, int IDClass, int IDSubject, String name, int unit, String content, int marked, int view) {
         this.IDLesson = IDLesson;

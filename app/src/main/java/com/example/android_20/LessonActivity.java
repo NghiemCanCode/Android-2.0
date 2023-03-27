@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telecom.Call;
+import android.widget.Toast;
 
 import com.example.android_20.Lesson.LessonDetailActivity;
 import com.example.android_20.model.Lesson;
@@ -26,22 +27,43 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         archeryDB.copyDatabase();
 
         rvListC = findViewById(R.id.rvLesson);
-        lstLesson = archeryDB.getLesson(1, 1);
+        lstLesson = archeryDB.getLesson(Utils.Grade, Utils.Subject);
 
         lessonAdapter = new LessonAdapter(lstLesson, LessonActivity.this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvListC.setAdapter(lessonAdapter);
         rvListC.setLayoutManager(linearLayoutManager);
-
-
     }
 
     @Override
     public void onItemClickListener(Lesson lesson) {
         Intent i = new Intent(LessonActivity.this, LessonDetailActivity.class);
-        i.putExtra("Content", lesson.getContent());
-        String a = "Bài " + lesson.getUnit() + ": " + lesson.getName();
-        i.putExtra("Name", a);
+        i.putExtra("Marked", lesson);
         startActivity(i);
+    }
+
+    @Override
+    public void onMarked(Lesson lesson) {
+        int mark = Math.abs(lesson.getMarked() -  1);
+        archeryDB = new ArcheryDB(this);
+        archeryDB.updateLessonMarked(lesson, mark);
+        if(mark == 1) Toast.makeText(LessonActivity.this, "Đã lưu bài học",
+                Toast.LENGTH_SHORT).show();
+        else Toast.makeText(LessonActivity.this, "Đã xóa lưu bài học",
+                Toast.LENGTH_SHORT).show();
+        resetData();
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        resetData();
+    }
+
+    public void resetData(){
+        lstLesson.clear();
+        lstLesson.addAll(archeryDB.getLesson(Utils.Grade, Utils.Subject));
+        lessonAdapter.notifyDataSetChanged();
     }
 }

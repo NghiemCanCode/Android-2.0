@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         archeryDB = new ArcheryDB(MainActivity.this);
         archeryDB.copyDatabase();
-        lessons = archeryDB.getLesson(1, 1);
+        lessons = archeryDB.getLesson(Utils.Grade, Utils.Subject);
         tvTest = findViewById(R.id.test);
         String a = String.valueOf(lessons.get(0));
         tvTest.setText(a);

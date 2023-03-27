@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -20,6 +22,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     ArrayList<Lesson> lstLesson;
     Context context;
     Listener listener;
+
     public LessonAdapter(ArrayList<Lesson> lstLesson, Listener listener) {
         this.lstLesson = lstLesson;
         this.listener =listener;
@@ -41,12 +44,15 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         Lesson item = lstLesson.get(position);
         String a ="Bài " + item.getUnit()+": " +item.getName();
         holder.tvNameC.setText(a);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onItemClickListener(item);
-            }
-        });
+
+        if (item.getMarked() == 1){
+            holder.ibLessonMarkedC.setImageResource(R.drawable.baseline_star_24);
+        }
+        else {
+            holder.ibLessonMarkedC.setImageResource(R.drawable.baseline_star_border_24);
+        }
+        holder.itemView.setOnClickListener(view -> listener.onItemClickListener(item));
+        holder.ibLessonMarkedC.setOnClickListener(view -> listener.onMarked(item));
     }
 
     @Override
@@ -56,13 +62,16 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
     class LessonViewHolder extends RecyclerView.ViewHolder {
         TextView tvNameC;
+        ImageButton ibLessonMarkedC;
 
         public LessonViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNameC = itemView.findViewById(R.id.tvLessonName);
+            ibLessonMarkedC = itemView.findViewById(R.id.ibLessonMarked);
         }
     }
     interface Listener{
         void onItemClickListener(Lesson lesson);
+        void onMarked(Lesson lesson);
     }
 }
