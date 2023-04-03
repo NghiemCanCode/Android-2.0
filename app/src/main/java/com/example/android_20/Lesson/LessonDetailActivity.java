@@ -65,6 +65,7 @@ public class LessonDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        db = new ArcheryDB(this);
         switch (item.getItemId()){
             case android.R.id.home:
                 Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
@@ -73,8 +74,6 @@ public class LessonDetailActivity extends AppCompatActivity {
                 return true;
             case R.id.itLsMnMarked:
                 int mark = Math.abs(flag -  1);
-                db = new ArcheryDB(this);
-
                 if (mark == 1){
                     item.setIcon(R.drawable.baseline_star_24);
                     Toast.makeText(LessonDetailActivity.this, "Đã lưu bài học",

@@ -52,18 +52,17 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         else Toast.makeText(LessonActivity.this, "Đã xóa lưu bài học",
                 Toast.LENGTH_SHORT).show();
         resetData();
-
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        resetData();
     }
 
     public void resetData(){
         lstLesson.clear();
         lstLesson.addAll(archeryDB.getLesson(Utils.Grade, Utils.Subject));
         lessonAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onRestart() {
+        resetData();
+        super.onRestart();
     }
 }
