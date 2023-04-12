@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuizzFragment.QuizzFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#f7f3eb">
+    <TextView
+        android:id="@+id/tvQuizz"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#fff"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Đề"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+        <Button
+            android:id="@+id/btAnswerA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="48dp"
+            android:backgroundTint="#ffff"
+            android:gravity="start"
+            android:paddingStart="25dp"
+            android:text="a"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuizz" />
+
+        <Button
+            android:id="@+id/btAnswerB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="48dp"
+            android:backgroundTint="#ffff"
+            android:gravity="start"
+            android:paddingStart="25dp"
+
+            android:text="a"
+
+            android:textAllCaps="false"
+            android:textColor="#000"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btAnswerA" />
+        <Button
+            android:id="@+id/btAnswerC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="48dp"
+            android:backgroundTint="#ffff"
+            android:gravity="start"
+            android:paddingStart="25dp"
+
+            android:text="a"
+            android:textAllCaps="false"
+
+            android:textColor="#000"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btAnswerB" />
+        <Button
+            android:id="@+id/btAnswerD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="48dp"
+            android:backgroundTint="#ffff"
+
+            android:gravity="start"
+            android:paddingStart="25dp"
+            android:text="ans"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            app:layout_constraintLeft_toLeftOf="parent"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btAnswerC" />
+</androidx.constraintlayout.widget.ConstraintLayout>

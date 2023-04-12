@@ -1,65 +1,95 @@
 package com.example.android_20.Lesson;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_20.ArcheryDB;
+import com.example.android_20.QuizzFragment.QuizzAdapter;
+import com.example.android_20.QuizzFragment.QuizzFragment;
 import com.example.android_20.R;
-import com.example.android_20.model.Answer;
-import com.example.android_20.model.Question;
-import com.example.android_20.model.QuizzList;
+import com.example.android_20.model.Quizz;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class LessonQuizActivity extends AppCompatActivity {
-    Toolbar tbLessonQuizz;
-    TextView tvQuizz;
-    Button btAnswerA, btAnswerB, btAnswerC, btAnswerD, btBack, btNext;
+public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapter.Listener{
     ArcheryDB archeryDB;
+    Toolbar tb;
+    ArrayList<Quizz> quizzes;
+    QuizzAdapter quizzAdapter;
+    RecyclerView recyclerView;
+    public Quizz currentQuizz;
 
+    public LessonQuizActivity(){
+        super(R.layout.activity_lesson_quiz);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_quiz);
         archeryDB = new ArcheryDB(this);
-        Mapping();
 
-        int currentPos = 0;
+        quizzes= archeryDB.quizz(1,1,10);
+        currentQuizz = quizzes.get(0);
+        tb = findViewById(R.id.tbLessonQuizz);
+        setSupportActionBar(tb);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        QuizzList quizzList = archeryDB.quizzList(1,1,10);
-        Question currentQuestion = quizzList.getQuestionSet().get(currentPos);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.FM, new QuizzFragment());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
 
-        ArrayList<Answer> currentAnswer = quizzList.getAnswerSet().get(currentPos);
 
-        tvQuizz.setText(currentQuestion.getQuestionContent());
 
-        btAnswerA.setText("A. " + currentAnswer.get(0).getAnswer());
-        btAnswerB.setText("B. " + currentAnswer.get(1).getAnswer());
-        btAnswerC.setText("C. " + currentAnswer.get(2).getAnswer());
-        btAnswerD.setText("D. " + currentAnswer.get(3).getAnswer());
+        recyclerView = findViewById(R.id.rvQuizz);
+
+
+
+        quizzAdapter = new QuizzAdapter(quizzes, LessonQuizActivity.this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,quizzes.size(),
+                GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(quizzAdapter);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.lesson_quizz_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onTextClick(Quizz data) {
+        currentQuizz = data;
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.FM, new QuizzFragment(), null);
+        fragmentTransaction.commit();
+
+        quizzAdapter.notifyDataSetChanged();
 
 
     }
-    void Mapping(){
-        tbLessonQuizz = findViewById(R.id.tbLessonQuizz);
-        tvQuizz = findViewById(R.id.tvQuizz);
-
-        btAnswerA = findViewById(R.id.btAnswerA);
-        btAnswerB = findViewById(R.id.btAnswerB);
-        btAnswerC = findViewById(R.id.btAnswerC);
-        btAnswerD = findViewById(R.id.btAnswerD);
-
-        btBack = findViewById(R.id.btBack);
-        btNext = findViewById(R.id.btNext);
-
-
-    }
-
 }

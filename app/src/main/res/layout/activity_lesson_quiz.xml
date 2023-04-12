@@ -16,131 +16,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Shiba" />
-
-    <TextView
-        android:id="@+id/tvQuizz"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="25dp"
-        android:backgroundTint="#fff"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="Đề"
-        android:textColor="#000"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tbLessonQuizz" />
-
-    <Button
-        android:id="@+id/btAnswerA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="48dp"
-        android:backgroundTint="#ffff"
-        android:gravity="start"
-        android:paddingStart="25dp"
-        android:text="a"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQuizz" />
-
-    <Button
-        android:id="@+id/btAnswerB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="48dp"
-        android:backgroundTint="#ffff"
-        android:gravity="start"
-        android:paddingStart="25dp"
-
-        android:text="a"
-
-        android:textAllCaps="false"
-        android:textColor="#000"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAnswerA" />
-
-    <Button
-        android:id="@+id/btAnswerC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="48dp"
-        android:backgroundTint="#ffff"
-        android:gravity="start"
-        android:paddingStart="25dp"
-
-        android:text="a"
-        android:textAllCaps="false"
-
-        android:textColor="#000"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAnswerB" />
-
-    <Button
-
-        android:id="@+id/btAnswerD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="48dp"
-        android:backgroundTint="#ffff"
-
-
-        android:gravity="start"
-        android:paddingStart="25dp"
-        android:text="ans"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        app:layout_constraintLeft_toLeftOf="parent"
-
-
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAnswerC" />
-
-
-    <Button
-        android:id="@+id/btBack"
-        android:layout_width="wrap_content"
-        android:text="Back"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintRight_toLeftOf="@id/glCenter"
-        app:layout_constraintTop_toBottomOf="@id/btAnswerD" />
-
-
-    <Button
-        android:id="@+id/btNext"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvQuizz"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="32dp"
-        android:text="Next"
-        app:layout_constraintLeft_toRightOf="@id/glCenter"
-        app:layout_constraintTop_toBottomOf="@id/btAnswerD" />
+        app:layout_constraintTop_toBottomOf="@id/tbLessonQuizz"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glCenter"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/FM"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"
-    />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvQuizz" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

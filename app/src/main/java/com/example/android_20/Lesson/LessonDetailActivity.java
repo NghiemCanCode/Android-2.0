@@ -59,7 +59,6 @@ public class LessonDetailActivity extends AppCompatActivity {
         else if (flag == 0){
             menu.getItem(0).setIcon(R.drawable.baseline_star_border_24);
         }
-
         return super.onCreateOptionsMenu(menu);
     }
 
