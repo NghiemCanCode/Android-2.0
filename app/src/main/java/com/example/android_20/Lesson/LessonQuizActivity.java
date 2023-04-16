@@ -17,8 +17,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapter.Listener{
@@ -28,7 +26,6 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
     QuizzAdapter quizzAdapter;
     RecyclerView recyclerView;
     public Quizz currentQuizz;
-
     public LessonQuizActivity(){
         super(R.layout.activity_lesson_quiz);
     }
@@ -36,11 +33,18 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_quiz);
+
+        int lessonId = getIntent().getIntExtra("LessonID", 1);
+        String nameLesson = getIntent().getStringExtra("LessonName");
+
         archeryDB = new ArcheryDB(this);
 
-        quizzes= archeryDB.quizz(1,1,10);
+        quizzes= archeryDB.quizz(lessonId);
         currentQuizz = quizzes.get(0);
         tb = findViewById(R.id.tbLessonQuizz);
+
+        tb.setTitle(nameLesson);
+
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -50,10 +54,7 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
         fragmentTransaction.commit();
 
 
-
         recyclerView = findViewById(R.id.rvQuizz);
-
-
 
         quizzAdapter = new QuizzAdapter(quizzes, LessonQuizActivity.this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,quizzes.size(),
@@ -61,7 +62,6 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(quizzAdapter);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,13 +83,12 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
 
     @Override
     public void onTextClick(Quizz data) {
+
         currentQuizz = data;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.FM, new QuizzFragment(), null);
         fragmentTransaction.commit();
 
         quizzAdapter.notifyDataSetChanged();
-
-
     }
 }

@@ -88,6 +88,21 @@ public class ArcheryDB {
 
         db.close();
     }
+    public void updateLessonCheck(Lesson lesson, int Check){
+        db = openDB();
+        ContentValues values = new ContentValues();
+
+        values.put("IDClass", lesson.getIDClass());
+        values.put("IDSubject", lesson.getIDSubject());
+        values.put("Name", lesson.getName());
+        values.put("Unit", lesson.getUnit());
+        values.put("Content",lesson.getContent());
+        values.put("Marked", lesson.getMarked());
+        values.put("Viewed", Check);
+        db.update("tblLesson", values, "IDLesson="
+                + lesson.getIDLesson(), null);
+        db.close();
+    }
 
     public QuizzList quizzList(int Class, int Subject, int Lesson){
         ArrayList<Question> questions = new ArrayList<>();
@@ -140,13 +155,13 @@ public class ArcheryDB {
         return tmp;
     }
 
-    public ArrayList<Quizz> quizz (int Class, int Subject, int Lesson ){
+    public ArrayList<Quizz> quizz (int Lesson ){
         ArrayList<Quizz> quizz = new ArrayList<>();
         Question tmpQ;
         ArrayList<Answer> tmpAS;
         db = openDB();
-        Cursor cursorQuestion = db.rawQuery("SELECT * FROM tblQuestion WHERE IDSubject == "
-                + Subject +" AND IDClass == " + Class + " AND IDLesson == " + Lesson, null);
+        Cursor cursorQuestion = db.rawQuery("SELECT * FROM tblQuestion WHERE IDLesson == "
+                + Lesson, null);
 
         while (cursorQuestion.moveToNext()){
             int idQuestion = cursorQuestion.getInt(0);
