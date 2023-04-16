@@ -64,6 +64,8 @@ public class LessonDetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.lesson_option_menu, menu);
+
+
         menu.getItem(0).setIcon(R.drawable.baseline_star_border_24);
 
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);

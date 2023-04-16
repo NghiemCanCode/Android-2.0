@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn ="navigation_view"
+    >
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/itClass"
+            android:title="Lớp Học"
+            android:icon="@drawable/baseline_arrow_drop_down_24"
+            />
+            <item
+                android:id="@+id/itDefault"
+                android:title="Khôi phục mặc định"
+                android:icon="@drawable/baseline_code_24"
+                />
+        <item
+            android:id="@+id/itInfoApps"
+            android:title="Thông tin ứng dụng"
+            android:icon="@drawable/baseline_info_24"
+            />
+        <item
+            android:id="@+id/itCall"
+            android:title="Liên Hệ"
+            android:icon="@drawable/baseline_local_phone_24"
+            />
+        <item
+            android:id="@+id/itSetting"
+            android:title="Setting"
+            android:icon="@drawable/baseline_settings_24"
+            />
+    </group>
+</menu>
