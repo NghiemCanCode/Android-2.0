@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.android_20.model.Answer;
 import com.example.android_20.model.Lesson;
 import com.example.android_20.model.Question;
+import com.example.android_20.model.Quizz;
 import com.example.android_20.model.QuizzList;
 
 import java.io.File;
@@ -87,6 +88,21 @@ public class ArcheryDB {
 
         db.close();
     }
+    public void updateLessonCheck(Lesson lesson, int Check){
+        db = openDB();
+        ContentValues values = new ContentValues();
+
+        values.put("IDClass", lesson.getIDClass());
+        values.put("IDSubject", lesson.getIDSubject());
+        values.put("Name", lesson.getName());
+        values.put("Unit", lesson.getUnit());
+        values.put("Content",lesson.getContent());
+        values.put("Marked", lesson.getMarked());
+        values.put("Viewed", Check);
+        db.update("tblLesson", values, "IDLesson="
+                + lesson.getIDLesson(), null);
+        db.close();
+    }
 
     public QuizzList quizzList(int Class, int Subject, int Lesson){
         ArrayList<Question> questions = new ArrayList<>();
@@ -110,8 +126,6 @@ public class ArcheryDB {
                     viewed, content, wrong));
         }
         cursorQuestion.close();
-
-
 
         for (Question qsId: questions
              ) {
@@ -137,7 +151,35 @@ public class ArcheryDB {
             int tRue = cursor.getInt(3);
             tmp.add(new Answer(idAnswer,idQuestion, Answer, tRue));
         }
+        cursor.close();
         return tmp;
     }
 
+    public ArrayList<Quizz> quizz (int Lesson ){
+        ArrayList<Quizz> quizz = new ArrayList<>();
+        Question tmpQ;
+        ArrayList<Answer> tmpAS;
+        db = openDB();
+        Cursor cursorQuestion = db.rawQuery("SELECT * FROM tblQuestion WHERE IDLesson == "
+                + Lesson, null);
+
+        while (cursorQuestion.moveToNext()){
+            int idQuestion = cursorQuestion.getInt(0);
+            int idSubject = cursorQuestion.getInt(1);
+            int idClass = cursorQuestion.getInt(2);
+            int idLesson = cursorQuestion.getInt(3);
+            int viewed = cursorQuestion.getInt(4);
+            String content = cursorQuestion.getString(5);
+            int wrong = cursorQuestion.getInt(6);
+
+            tmpQ = new Question(idQuestion, idSubject, idClass, idLesson,
+                    viewed, content, wrong);
+            tmpAS = getAnswerF(idQuestion);
+            quizz.add(new Quizz(tmpQ, tmpAS));
+        }
+        cursorQuestion.close();
+
+        return quizz;
+    }
 }
+

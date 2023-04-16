@@ -57,6 +57,11 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         else {
             holder.ibLessonMarkedC.setImageResource(R.drawable.baseline_star_border_24);
         }
+
+        if (item.getView() == 1){
+            holder.ibStick.setImageResource(R.drawable.baseline_check_24);
+        }
+
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(item));
         holder.ibLessonMarkedC.setOnClickListener(view -> listener.onMarked(item));
     }
@@ -69,12 +74,12 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
     class LessonViewHolder extends RecyclerView.ViewHolder {
         TextView tvNameC;
-        ImageButton ibLessonMarkedC;
-
+        ImageButton ibLessonMarkedC, ibStick;
         public LessonViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNameC = itemView.findViewById(R.id.tvLessonName);
             ibLessonMarkedC = itemView.findViewById(R.id.ibLessonMarked);
+            ibStick = itemView.findViewById(R.id.ibLessonStick);
         }
     }
     interface Listener{

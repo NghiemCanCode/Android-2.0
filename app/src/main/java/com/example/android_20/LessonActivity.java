@@ -3,6 +3,7 @@ package com.example.android_20;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.telecom.Call;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.android_20.Lesson.LessonDetailActivity;
@@ -32,13 +43,17 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     ArcheryDB archeryDB;
     ArrayList<Lesson> searchList;
     Toolbar tb;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
+
+        tb = findViewById(R.id.tbLessonMain);
+
+        setSupportActionBar(tb);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tb.setTitle("Đây là môn học");
 
         archeryDB = new ArcheryDB(this);
         archeryDB.copyDatabase();
@@ -61,8 +76,11 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     @Override
     public void onItemClickListener(Lesson lesson) {
         Intent i = new Intent(LessonActivity.this, LessonDetailActivity.class);
+        archeryDB = new ArcheryDB(this);
+        archeryDB.updateLessonCheck(lesson, 1);
         i.putExtra("Marked", lesson);
         startActivity(i);
+        resetData();
     }
 
     @Override
@@ -221,5 +239,4 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         return super.onOptionsItemSelected(item);
     }
 }
-
 

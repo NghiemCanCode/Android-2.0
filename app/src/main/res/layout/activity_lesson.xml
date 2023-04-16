@@ -6,7 +6,19 @@
     style="@style/SCREEN"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LessonActivity">
+    tools:context=".LessonActivity"
+    android:background="#f7f3eb">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id ="@+id/tbLessonMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Nội dung"
+        android:background="#03ef62"
+        />
 
 
     <androidx.appcompat.widget.Toolbar

@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +26,7 @@ public class LessonDetailActivity extends AppCompatActivity {
     TextView tvDetailC, tvDetailNameC;
     ArcheryDB db;
     Toolbar tb;
+    Button btQuestionC;
     int flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +36,28 @@ public class LessonDetailActivity extends AppCompatActivity {
         tb = findViewById(R.id.tbLessonContent);
         tvDetailC = findViewById(R.id.tvLessonDetail);
         tvDetailNameC = findViewById(R.id.tvLessonNameDetail);
+        btQuestionC = findViewById(R.id.btQuestion);
+
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
 
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        tb.setTitle("Bài "+ ls.getUnit());
 
         String a = ls.getContent();
         String b = ls.getName();
         tvDetailC.setText(a);
         tvDetailNameC.setText(b);
+        btQuestionC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LessonDetailActivity.this, LessonQuizActivity.class);
+                i.putExtra("LessonID", ls.getIDLesson());
+                i.putExtra("LessonName", "Bài " + ls.getUnit() + ": " + ls.getName());
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
@@ -62,7 +77,6 @@ public class LessonDetailActivity extends AppCompatActivity {
         else if (flag == 0){
             menu.getItem(0).setIcon(R.drawable.baseline_star_border_24);
         }
-
         return super.onCreateOptionsMenu(menu);
     }
 

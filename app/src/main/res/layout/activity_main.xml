@@ -28,7 +28,6 @@
 
         </androidx.drawerlayout.widget.DrawerLayout>
 
-
         <androidx.appcompat.widget.Toolbar
             android:id ="@+id/tbMainMenu"
             app:layout_constraintEnd_toEndOf="parent"
