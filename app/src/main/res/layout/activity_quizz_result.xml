@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    tools:context=".Lesson.QuizzResultActivity">
+
+    <RelativeLayout
+        android:id="@+id/cirleScore"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp">
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/circularProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cpb_background_progressbar_color="#F51923"
+            app:cpb_background_progressbar_width="5dp"
+            app:cpb_progress_direction="to_right"
+            app:cpb_progressbar_color="@color/green"
+            app:cpb_progressbar_width="10dp"
+            app:cpb_progress_max="5"
+            app:cpb_round_border="false" />
+
+        <TextView
+            android:id="@+id/tvResultScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="score"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cirleScore"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnWatchResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/roung_back_green"
+            android:textAllCaps="false"
+            android:text="View Result"
+            android:layout_marginEnd="15dp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAgain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/roung_back_green"
+            android:textAllCaps="false"
+            android:text="Start Again"
+            />
+    </LinearLayout>
+</RelativeLayout>

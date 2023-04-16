@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,8 +19,10 @@ import android.widget.Toast;
 
 import com.example.android_20.ArcheryDB;
 import com.example.android_20.LessonActivity;
+import com.example.android_20.NoteActivity;
 import com.example.android_20.R;
 import com.example.android_20.model.Lesson;
+import com.example.android_20.model.Notes;
 
 public class LessonDetailActivity extends AppCompatActivity {
     TextView tvDetailC, tvDetailNameC;
@@ -37,27 +40,26 @@ public class LessonDetailActivity extends AppCompatActivity {
 
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        int id= ls.getIDLesson();
         String a = ls.getContent();
         String b = ls.getName();
         tvDetailC.setText(a);
         tvDetailNameC.setText(b);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.lesson_option_menu, menu);
-        menu.getItem(0).setIcon(R.drawable.baseline_star_border_24);
-
+        menu.getItem(1).setIcon(R.drawable.baseline_star_border_24);
+        menu.getItem(0).setIcon(R.drawable.baseline_notes_24);
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
 
         flag = ls.getMarked();
         if (flag == 1){
-            menu.getItem(0).setIcon(R.drawable.baseline_star_24);
+            menu.getItem(1).setIcon(R.drawable.baseline_star_24);
         }
         else if (flag == 0){
-            menu.getItem(0).setIcon(R.drawable.baseline_star_border_24);
+            menu.getItem(1).setIcon(R.drawable.baseline_star_border_24);
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -70,6 +72,12 @@ public class LessonDetailActivity extends AppCompatActivity {
                 Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
                 db.updateLessonMarked(ls, flag);
                 finish();
+                return true;
+            case R.id.itNote:
+                Lesson lss = getIntent().getSerializableExtra("Marked", Lesson.class);
+                Intent intent= new Intent(LessonDetailActivity.this, NoteActivity.class);
+                intent.putExtra("IdLesson",lss.getIDLesson());
+                startActivity(intent);
                 return true;
             case R.id.itLsMnMarked:
                 int mark = Math.abs(flag -  1);

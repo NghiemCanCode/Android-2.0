@@ -12,27 +12,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android20"
         tools:targetApi="33">
+
         <activity
-            android:name=".Lesson.LessonQuizActivity"
+            android:name=".Lesson.ExamQuizAtivity"
+            android:exported="false" />
+        <activity
+            android:name=".Lesson.LessonExamActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".Lesson.LessonQuizActivity"
+            android:exported="true"></activity>
+        <activity
             android:name=".Lesson.LessonDetailActivity"
-            android:exported="true" />
-
+            android:exported="false" />
         <activity
             android:name=".LessonActivity"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".NoteActivity"
+            android:exported="true" />
+        <activity android:name=".Lesson.QuizzResultActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>
