@@ -30,6 +30,7 @@ public class LessonDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_detail);
+
         tb = findViewById(R.id.tbLessonContent);
         tvDetailC = findViewById(R.id.tvLessonDetail);
         tvDetailNameC = findViewById(R.id.tvLessonNameDetail);
@@ -48,6 +49,8 @@ public class LessonDetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.lesson_option_menu, menu);
+
+
         menu.getItem(0).setIcon(R.drawable.baseline_star_border_24);
 
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);

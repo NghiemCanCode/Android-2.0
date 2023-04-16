@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -14,17 +16,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_20.model.Lesson;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder> {
     ArrayList<Lesson> lstLesson;
     Context context;
     Listener listener;
 
+
     public LessonAdapter(ArrayList<Lesson> lstLesson, Listener listener) {
         this.lstLesson = lstLesson;
         this.listener =listener;
     }
+
+
 
     @NonNull
     @Override
@@ -58,6 +66,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         return lstLesson.size();
     }
 
+
     class LessonViewHolder extends RecyclerView.ViewHolder {
         TextView tvNameC;
         ImageButton ibLessonMarkedC;
@@ -72,4 +81,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         void onItemClickListener(Lesson lesson);
         void onMarked(Lesson lesson);
     }
+
+
+
 }

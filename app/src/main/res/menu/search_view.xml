@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnSearch"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/action_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.widget.SearchView" />
+    <item
+        android:id="@+id/mnSort"
+        android:icon="@drawable/baseline_sort_24"
+        android:title="Sort"
+        app:showAsAction = "always">
+        <menu>
+            <item android:title="Sắp xếp theo bài " android:id="@+id/mnSortID" />
+            <item android:title="Sắp xếp theo tên " android:id="@+id/mnSortName"/>
+            <item android:title="Sắp xếp theo bài đã đánh dấu " android:id="@+id/mnSortMarked"/>
+        </menu>
+    </item>
+</menu>
