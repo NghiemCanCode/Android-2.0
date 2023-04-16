@@ -31,7 +31,7 @@ public class SettingActivity extends AppCompatActivity {
 
         //getSupportActionBar().hide();
         switch1 = findViewById(R.id.switch1);
-        //we use sharepreferences to save mode if exit and go back again
+        //we use sharePreferences to save mode if exit and go back again
         sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
         nightMODE= sharedPreferences.getBoolean("night", false);//light mode is the deafault mode
 

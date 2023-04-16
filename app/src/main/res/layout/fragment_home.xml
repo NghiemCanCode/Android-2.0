@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/SCREEN"
+    tools:context=".fragment.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <Button
+        android:id="@+id/btNguVan"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:backgroundTint="#03ef62"
+        android:text="Ngữ Văn"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="32dp"
+        android:drawableRight="@drawable/baseline_library_books_24"
+        android:drawablePadding="16dp"
+        />
+
+    <Button
+        android:id="@+id/btLichSu"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="Lịch Sử"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:backgroundTint="#B3894B"
+        app:layout_constraintTop_toBottomOf="@+id/btNguVan"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="32dp"
+        android:drawableLeft="@drawable/baseline_history_edu_24"
+        android:padding="16dp"
+        />
+
+    <Button
+        android:id="@+id/btDiaLy"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="Địa Lý"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:backgroundTint="#2092ED"
+        app:layout_constraintTop_toBottomOf="@+id/btLichSu"
+        android:layout_marginTop="32dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="32dp"
+        android:drawableRight="@drawable/baseline_landscape_24"
+        android:drawablePadding="16dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
