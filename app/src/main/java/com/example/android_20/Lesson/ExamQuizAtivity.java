@@ -55,7 +55,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
         if(getIntent().getIntExtra("Result",0)==1){
             Result=1;
             Bundle args=getIntent().getBundleExtra("Bundle");
-            listQuizzExam= (ArrayList<Quizz>) args.getSerializable("ArrayList");
+            listQuizzExam=args.getSerializable("ArrayList", ArrayList.class);
         }
         else {
             quizzes=db.quizzListExam(getIntent().getIntExtra("Class",0),getIntent().getIntExtra("IDSubject",0));
