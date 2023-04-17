@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
-//        drawerlayout
+//        drawer layout
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_home);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//chúng ta kích hoạt nút quay lại trong thanh hành động
         navigationView.setNavigationItemSelectedListener(this);
-
 
         loadFragment(new HomeFragment());// khi khoi tao ung dung len hien thi homefragment
     }
