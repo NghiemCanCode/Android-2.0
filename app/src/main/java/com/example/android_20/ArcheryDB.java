@@ -7,10 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.android_20.model.Answer;
 import com.example.android_20.model.Lesson;
-import com.example.android_20.model.Notes;
 import com.example.android_20.model.Question;
 import com.example.android_20.model.Quizz;
 import com.example.android_20.model.QuizzList;
+import com.example.android_20.model.Subject;
 
 import java.io.File;
 import java.io.IOException;
@@ -89,32 +89,22 @@ public class ArcheryDB {
 
         db.close();
     }
-    public ArrayList<Quizz> quizzListExam(int Class, int Subject){
-        ArrayList<Quizz> quizz = new ArrayList<>();
-        Question tmpQ;
-        ArrayList<Answer> tmpAS;
+    public void updateLessonCheck(Lesson lesson, int Check){
         db = openDB();
-        Cursor cursorQuestion = db.rawQuery("SELECT * FROM tblQuestion WHERE IDSubject == "
-                + Subject +" AND IDClass == " + Class, null);
+        ContentValues values = new ContentValues();
 
-        while (cursorQuestion.moveToNext()){
-            int idQuestion = cursorQuestion.getInt(0);
-            int idSubject = cursorQuestion.getInt(1);
-            int idClass = cursorQuestion.getInt(2);
-            int idLesson = cursorQuestion.getInt(3);
-            int viewed = cursorQuestion.getInt(4);
-            String content = cursorQuestion.getString(5);
-            int wrong = cursorQuestion.getInt(6);
-
-            tmpQ = new Question(idQuestion, idSubject, idClass, idLesson,
-                    viewed, content, wrong);
-            tmpAS = getAnswerF(idQuestion);
-            quizz.add(new Quizz(tmpQ, tmpAS));
-        }
-        cursorQuestion.close();
-
-        return quizz;
+        values.put("IDClass", lesson.getIDClass());
+        values.put("IDSubject", lesson.getIDSubject());
+        values.put("Name", lesson.getName());
+        values.put("Unit", lesson.getUnit());
+        values.put("Content",lesson.getContent());
+        values.put("Marked", lesson.getMarked());
+        values.put("Viewed", Check);
+        db.update("tblLesson", values, "IDLesson="
+                + lesson.getIDLesson(), null);
+        db.close();
     }
+
     public QuizzList quizzList(int Class, int Subject, int Lesson){
         ArrayList<Question> questions = new ArrayList<>();
         ArrayList<ArrayList<Answer>> answers = new ArrayList<>();
@@ -166,13 +156,13 @@ public class ArcheryDB {
         return tmp;
     }
 
-    public ArrayList<Quizz> quizz (int Class, int Subject, int Lesson ){
+    public ArrayList<Quizz> quizz (int Lesson ){
         ArrayList<Quizz> quizz = new ArrayList<>();
         Question tmpQ;
         ArrayList<Answer> tmpAS;
         db = openDB();
-        Cursor cursorQuestion = db.rawQuery("SELECT * FROM tblQuestion WHERE IDSubject == "
-                + Subject +" AND IDClass == " + Class + " AND IDLesson == " + Lesson, null);
+        Cursor cursorQuestion = db.rawQuery("SELECT * FROM tblQuestion WHERE IDLesson == "
+                + Lesson, null);
 
         while (cursorQuestion.moveToNext()){
             int idQuestion = cursorQuestion.getInt(0);
@@ -192,36 +182,9 @@ public class ArcheryDB {
 
         return quizz;
     }
-    public void InsertNote(int IdLesson,String Content){
-        db = openDB();
-        ContentValues values = new ContentValues();
-        values.put("IdLesson",IdLesson);
-        values.put("Content", Content);
-        db.insert("tblNotes",null,values);
-        db.close();
-    }
-    public void UpdateNote(int IdLesson, String newContent){
-        db=openDB();
-        ContentValues values = new ContentValues();
-        values.put("Content",newContent);
-        db.update("tblNotes",values,"IdLesson=" + IdLesson,null);
-        db.close();
-    }
-    public ArrayList<Notes> getNotes(int Lesson){
-        ArrayList<Notes> notes=new ArrayList<>();
-        db=openDB();
-        Cursor cursor=db.rawQuery("SELECT * FROM tblNotes " +
-                "WHERE IdLesson == "+ Lesson,null);
-        while (cursor.moveToNext()){
-            int idNote=cursor.getInt(0);
-            int idLesson=cursor.getInt(1);
-            String content=cursor.getString(2);
-            notes.add(new Notes(idNote,idLesson,content));
-        }
-        cursor.close();
-        db.close();
-        return notes;
-    }
-    
+
+
+
+
 }
 

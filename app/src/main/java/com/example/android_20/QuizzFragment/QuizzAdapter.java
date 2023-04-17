@@ -19,7 +19,7 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolder>{
     ArrayList<Quizz> quizzes;
     Context context;
     Listener listener;
-
+    int pos = 0;
     public QuizzAdapter(ArrayList<Quizz> quizzes, Listener listener) {
         this.quizzes = quizzes;
         this.listener = listener;
@@ -34,14 +34,10 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolder>{
         ViewHolder viewHolder = new ViewHolder(userView);
         return viewHolder;
     }
-
-
-
     @Override
     public void onBindViewHolder(@NonNull QuizzAdapter.ViewHolder holder, int position) {
         Quizz item = quizzes.get(position);
         holder.tv.setText(String.valueOf(position + 1));
-
         if(item.getTrueOrFalse() == 0){
             holder.tv.setBackgroundColor(Color.rgb(255,255,255));
         }
@@ -51,11 +47,14 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolder>{
         else
             holder.tv.setBackgroundColor(Color.rgb(255,0,0));
 
+        if(pos == holder.getAdapterPosition())
+            holder.tv.setBackgroundColor(Color.rgb(0,0,255));
 
         holder.tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onTextClick(item);
+                pos = holder.getLayoutPosition()    ;
             }
         });
     }
