@@ -1,27 +1,20 @@
 package com.example.android_20.QuizzFragment;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.android_20.Lesson.LessonQuizActivity;
-import com.example.android_20.LessonActivity;
 import com.example.android_20.R;
 import com.example.android_20.model.Quizz;
-
-import java.util.ArrayList;
 
 public class QuizzFragment extends Fragment {
     private View view;
@@ -134,27 +127,35 @@ public class QuizzFragment extends Fragment {
         switch (quizz.getTrueOrFalse()){
             case 1:
                 btAnswerA.setBackgroundColor(Color.rgb(0,255,0));
+                flag[0] = true;
                 return;
             case 2:
                 btAnswerB.setBackgroundColor(Color.rgb(0,255,0));
+                flag[1] = true;
                 return;
             case 3:
                 btAnswerC.setBackgroundColor(Color.rgb(0,255,0));
+                flag[2] = true;
                 return;
             case 4:
                 btAnswerD.setBackgroundColor(Color.rgb(0,255,0));
+                flag[3] = true;
                 return;
             case -1:
                 btAnswerA.setBackgroundColor(Color.rgb(255,0,0));
+                flag[0] = true;
                 return;
             case -2:
                 btAnswerB.setBackgroundColor(Color.rgb(255,0,0));
+                flag[1] = true;
                 return;
             case -3:
                 btAnswerC.setBackgroundColor(Color.rgb(255,0,0));
+                flag[2] = true;
                 return;
             case -4:
                 btAnswerD.setBackgroundColor(Color.rgb(255,0,0));
+                flag[3] = true;
                 return;
             case 0:
                 btAnswerA.setBackgroundColor(Color.rgb(255,255,255));

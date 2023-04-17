@@ -7,6 +7,7 @@ public class Quizz implements Serializable {
     private Question question;
     private ArrayList<Answer> answers;
     private int TrueOrFalse = 0;
+    private int Chosen = 0;
 
     public Quizz(){}
 
@@ -38,6 +39,10 @@ public class Quizz implements Serializable {
     public void setAnswers(ArrayList<Answer> answers) {
         this.answers = answers;
     }
-
-
+    public int getChosen() {
+        return Chosen;
+    }
+    public void setChosen(int chosen) {
+        Chosen = chosen;
+    }
 }

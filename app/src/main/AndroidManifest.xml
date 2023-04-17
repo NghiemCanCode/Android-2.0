@@ -7,17 +7,19 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo2"
+        android:icon="@drawable/logo"
         android:label="Archery"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android20"
         tools:targetApi="33">
-
         <activity
-            android:name=".Lesson.ExamQuizAtivity"
+            android:name=".SecondSplashActivity"
             android:exported="false" />
         <activity
-            android:name=".Lesson.LessonExamActivity"
+            android:name=".ChoiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +29,7 @@
         </activity>
         <activity
             android:name=".Lesson.LessonQuizActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Lesson.LessonDetailActivity"
             android:exported="false" />
@@ -36,12 +38,8 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".NoteActivity"
-            android:exported="true" />
-        <activity android:name=".Lesson.QuizzResultActivity"
-            android:exported="false"/>
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7f3eb"
+    style="@style/SCREEN"
     tools:context=".Lesson.LessonQuizActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -16,6 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Shiba" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvQuizz"
         android:orientation="horizontal"
@@ -33,5 +34,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rvQuizz" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
