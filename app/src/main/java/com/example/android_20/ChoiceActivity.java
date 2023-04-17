@@ -33,9 +33,9 @@ public class ChoiceActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("Class", Class);
+                editor.apply();
                 Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
