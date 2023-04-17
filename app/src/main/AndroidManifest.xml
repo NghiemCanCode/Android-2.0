@@ -13,28 +13,33 @@
         android:theme="@style/Theme.Android20"
         tools:targetApi="33">
         <activity
-            android:name=".Lesson.LessonQuizActivity"
+            android:name=".SecondSplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChoiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name=".Lesson.LessonQuizActivity"
+            android:exported="true" />
         <activity
             android:name=".Lesson.LessonDetailActivity"
             android:exported="false" />
         <activity
             android:name=".LessonActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
