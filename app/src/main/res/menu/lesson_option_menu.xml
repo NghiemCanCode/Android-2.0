@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item
+        android:id="@+id/itNote"
+        android:icon="@drawable/baseline_notes_24"
+        app:showAsAction="ifRoom"
+
+        android:title="Note"/>
+    <item
         android:id="@+id/itLsMnMarked"
         android:icon="@drawable/baseline_star_border_24"
         android:title="Marked"
