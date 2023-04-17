@@ -1,5 +1,4 @@
 package com.example.android_20;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.os.Handler;
 import android.os.Looper;
 
 public class SplashActivity extends AppCompatActivity {
-    String filename = "config";
     SharedPreferences sharedPreferences;
 
 
@@ -18,24 +16,20 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        sharedPreferences = getSharedPreferences(filename, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Utils.filename, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        new Handler(Looper.myLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(sharedPreferences == null){
-                    Intent intent = new Intent(SplashActivity.this, ChoiceActivity.class);
-                }
+        new Handler(Looper.myLooper()).postDelayed(() -> {
+            Intent intent;
+            if(sharedPreferences != null){
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+                finish();
             }
-        },2500);
+            else{
+                intent = new Intent(SplashActivity.this, SecondSplashActivity.class);
+                finish();
+            }
+            startActivity(intent);
+        },2000);
     }
-
-   // @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if(sharedPreferences == null){
-//
-//        }
-//    }
 }
