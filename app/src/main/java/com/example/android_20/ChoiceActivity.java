@@ -17,6 +17,7 @@ public class ChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice);
+
         sharedPreferences = getSharedPreferences(Utils.filename, MODE_PRIVATE);
         ivChoice1C = findViewById(R.id.tv1Choice);
         ivChoice2C = findViewById(R.id.tv2Choice);

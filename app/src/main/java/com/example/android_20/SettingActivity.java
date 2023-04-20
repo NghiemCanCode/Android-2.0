@@ -12,15 +12,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Switch;
 
 public class SettingActivity extends AppCompatActivity {
 
     Switch switch1;
     boolean nightMODE;
-    SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     ImageView ivBack;
+    private SharedPreferences sharedPreferences;
+    private SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,8 @@ public class SettingActivity extends AppCompatActivity {
         //getSupportActionBar().hide();
         switch1 = findViewById(R.id.switch1);
         //we use sharePreferences to save mode if exit and go back again
-        sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
-        nightMODE= sharedPreferences.getBoolean("night", false);//light mode is the deafault mode
+        sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
+        nightMODE= sharedPreferences.getBoolean("night", false);//light mode is the Default mode
 
         if(nightMODE){
             switch1.setChecked(true);
@@ -56,7 +58,33 @@ public class SettingActivity extends AppCompatActivity {
         });
         //set event cho nut back
         ivBack.setOnClickListener(view -> finish());
-    }
 
+        //font
+        sharedPreferences = getSharedPreferences("FontSize", MODE_PRIVATE);
+        int currentFontSize = sharedPreferences.getInt("fontSize", 16);
+
+        seekBar = findViewById(R.id.seekBar);
+        seekBar.setProgress(currentFontSize - 16); //set progress based on current font size
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int newFontSize = 16; //initialize to default font size
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUSer) {
+                 newFontSize = progress + 16; // calculate new font size based on progress
+                // update font size for app
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // save font size in SharedPreferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("fontSize", newFontSize);
+                editor.apply();
+            }
+        });
+    }
 
 }
