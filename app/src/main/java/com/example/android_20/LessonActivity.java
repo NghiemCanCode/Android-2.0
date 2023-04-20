@@ -44,6 +44,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     ArcheryDB archeryDB;
     ArrayList<Lesson> searchList;
     Toolbar tb;
+    int Grade, Subject;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +62,16 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         archeryDB.copyDatabase();
 
         sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
-        int Grade = sharedPreferences.getInt("Class", -1);
+        Grade = sharedPreferences.getInt("Class", -1);
+
+        Subject = getIntent().getIntExtra("Subject", -1);
+
         tb = findViewById(R.id.tbLessonMenu);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rvListC = findViewById(R.id.rvLesson);
-        lstLesson = archeryDB.getLesson(Grade, Utils.Subject);
+        lstLesson = archeryDB.getLesson(Grade, Subject);
 
         lessonAdapter = new LessonAdapter(lstLesson, LessonActivity.this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -100,7 +104,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
 
     public void resetData() {
         lstLesson.clear();
-        lstLesson.addAll(archeryDB.getLesson(Utils.Grade, Utils.Subject));
+        lstLesson.addAll(archeryDB.getLesson(Grade, Subject));
         lessonAdapter.notifyDataSetChanged();
     }
 
