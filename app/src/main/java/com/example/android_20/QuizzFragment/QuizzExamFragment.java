@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.android_20.ArcheryDB;
 import com.example.android_20.Lesson.ExamQuizAtivity;
 import com.example.android_20.Lesson.LessonQuizActivity;
 import com.example.android_20.R;
@@ -30,7 +31,7 @@ public class QuizzExamFragment extends Fragment {
 
     Button btnOP1,btnOP2,btnOP3,btnOP4;
 
-
+    ArcheryDB db;
     ExamQuizAtivity examQuizAtivity;
 
 
@@ -46,7 +47,8 @@ public class QuizzExamFragment extends Fragment {
         btnOP3 = view.findViewById(R.id.btnOP3);
         btnOP4 = view.findViewById(R.id.btnOP4);
         tvQuestions=view.findViewById(R.id.tvQuestions);
-
+        db=new ArcheryDB(getContext());
+        db.copyDatabase();
 
         examQuizAtivity = (ExamQuizAtivity) getActivity();
         quizz = examQuizAtivity.currentQuizz;
@@ -74,6 +76,9 @@ public class QuizzExamFragment extends Fragment {
                     btnOP3.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP4.setBackgroundResource(R.drawable.round_back_white_stoke);
                     examQuizAtivity.z(quizz.getAnswers().get(0).getTrue());
+                    if(quizz.getAnswers().get(0).getTrue()==0){
+                        db.updateWrong(quizz.getQuestion().getIDQuestion(),quizz.getQuestion().getWrongCount());
+                    }
                 }
             });
             btnOP2.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +89,10 @@ public class QuizzExamFragment extends Fragment {
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP3.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP4.setBackgroundResource(R.drawable.round_back_white_stoke);
-
                     examQuizAtivity.z(quizz.getAnswers().get(1).getTrue());
+                    if(quizz.getAnswers().get(1).getTrue()==0){
+                        db.updateWrong(quizz.getQuestion().getIDQuestion(),quizz.getQuestion().getWrongCount());
+                    }
                 }
             });
             btnOP3.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +104,9 @@ public class QuizzExamFragment extends Fragment {
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP4.setBackgroundResource(R.drawable.round_back_white_stoke);
                     examQuizAtivity.z(quizz.getAnswers().get(2).getTrue());
-
+                    if(quizz.getAnswers().get(2).getTrue()==0){
+                        db.updateWrong(quizz.getQuestion().getIDQuestion(),quizz.getQuestion().getWrongCount());
+                    }
                 }
             });
             btnOP4.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +118,9 @@ public class QuizzExamFragment extends Fragment {
                     btnOP3.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);
                     examQuizAtivity.z(quizz.getAnswers().get(3).getTrue());
-
+                    if(quizz.getAnswers().get(3).getTrue()==0){
+                        db.updateWrong(quizz.getQuestion().getIDQuestion(),quizz.getQuestion().getWrongCount());
+                    }
                 }
             });
 

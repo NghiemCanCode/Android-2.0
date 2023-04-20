@@ -53,7 +53,8 @@ public class NoteActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.note_option_menu, menu);
-        menu.getItem(0).setIcon(R.drawable.baseline_save_alt_24);
+        menu.getItem(0).setIcon(R.drawable.baseline_delete_24);
+        menu.getItem(1).setIcon(R.drawable.baseline_save_alt_24);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -78,6 +79,10 @@ public class NoteActivity extends AppCompatActivity {
 //                else {
 //                    db.UpdateNote(note.getIdLesson(),edtNoteContent.getText().toString());
 //                }
+                finish();
+                return true;
+            case R.id.itDelete:
+                db.DeleteNote(getIntent().getIntExtra("IdLesson",0));
                 finish();
                 return true;
             default:
