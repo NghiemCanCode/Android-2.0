@@ -7,26 +7,14 @@
     tools:context=".ChoiceActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chọn lớp"
-        android:textColor="@color/black"
-        android:textSize="35sp"
-        android:textStyle="bold"
-
-        app:layout_constraintBottom_toTopOf="@+id/tv1Choice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
-
     <ImageView
         android:id="@+id/tv1Choice"
         android:layout_width="match_parent"
         android:layout_height="150sp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="160dp"
         android:src="@drawable/photolop10"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -37,6 +25,8 @@
         android:id = "@+id/tv2Choice"
         android:layout_width="match_parent"
         android:layout_height="150sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:src="@drawable/photolop11"
         app:layout_constraintTop_toBottomOf="@id/tv1Choice"
         app:layout_constraintBottom_toTopOf="@id/tv3Choice"
@@ -47,13 +37,25 @@
         android:id="@+id/tv3Choice"
         android:layout_width="match_parent"
         android:layout_height="150sp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="120dp"
         android:src="@drawable/photolop12"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id = "@+id/tbChoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Chọn Lớp"
 
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="#03ef62"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

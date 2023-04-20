@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,22 +12,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.telecom.Call;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.telecom.Call;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.android_20.Lesson.LessonDetailActivity;
@@ -43,6 +31,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     LessonAdapter lessonAdapter;
     ArcheryDB archeryDB;
     ArrayList<Lesson> searchList;
+
     Toolbar tb;
     int Grade, Subject;
     SharedPreferences sharedPreferences;
@@ -105,12 +94,6 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         lessonAdapter.notifyDataSetChanged();
     }
 
-//    @Override
-//    protected void onPause() {
-//        resetData();
-//        super.onPause();
-//    }
-
     @Override
     protected void onResume() {
         resetData();
@@ -118,15 +101,9 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     }
 
 
-//    @Override
-//    protected void onStop() {
-//        resetData();
-//        super.onStop();
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //searchview
+        //search view
         //lay menu ra
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_view, menu);
@@ -155,17 +132,10 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
                            searchList.add(lesson);
                         }
                     }
-                    lstLesson.clear();
-                    lstLesson.addAll(searchList);
-                    lessonAdapter.notifyDataSetChanged();
-
                 }
-                else {
-                    lstLesson.clear();
-                    lstLesson.addAll(searchList);
-                    lessonAdapter.notifyDataSetChanged();
-
-                }
+                lstLesson.clear();
+                lstLesson.addAll(searchList);
+                lessonAdapter.notifyDataSetChanged();
                 return false;
             }
 
@@ -214,7 +184,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
                             if(lesson1.getUnit() > lesson2.getUnit()){
                                 return 1;
                             }else {
-                                if(lesson1.getIDLesson()==lesson2.getIDLesson()){
+                                if(lesson1.getUnit()==lesson2.getIDLesson()){
                                     return 0;
                                 }else return -1;
                             }
@@ -223,7 +193,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
                     lessonAdapter.notifyDataSetChanged();
                     Toast.makeText(LessonActivity.this, "Sắp xếp thành công", Toast.LENGTH_SHORT).show();
                     break;
-                case  R.id.mnSortName:
+                case R.id.mnSortName:
                     Collections.sort(lstLesson, new Comparator<Lesson>() {
                         @Override
                         public int compare(Lesson lesson1, Lesson lesson2) {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.android_20.MainActivity;
 import com.example.android_20.QuizzFragment.QuizzExamFragment;
 import com.example.android_20.R;
 import com.example.android_20.model.Quizz;
@@ -28,28 +29,29 @@ public class QuizzResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_result);
-        btnAgain=findViewById(R.id.btnAgain);
-        btnViewResult=findViewById(R.id.btnWatchResult);
-        tvScore=findViewById(R.id.tvResultScore);
-        circularProgressBar=findViewById(R.id.circularProgressBar);
+        btnAgain = findViewById(R.id.btnAgain);
+        btnViewResult = findViewById(R.id.btnWatchResult);
+        tvScore = findViewById(R.id.tvResultScore);
+        circularProgressBar = findViewById(R.id.circularProgressBar);
         int score=getIntent().getIntExtra("correct",0);
         circularProgressBar.setProgress(score);
-        tvScore.setText(score+"/5");
-        resultList=new ArrayList<>();
+        tvScore.setText(score + "/5");
+        resultList = new ArrayList<>();
         btnAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(QuizzResultActivity.this,LessonExamActivity.class);
+                Intent intent= new Intent(QuizzResultActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         btnViewResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle args=getIntent().getBundleExtra("Bundle");
-                resultList= (ArrayList<Quizz>) args.getSerializable("ArrayList");
-                Intent intent=new Intent(QuizzResultActivity.this,ExamQuizAtivity.class);
-                Bundle bundle=new Bundle();
+                Bundle args = getIntent().getBundleExtra("Bundle");
+                resultList = args.getSerializable("ArrayList", ArrayList.class);
+                Intent intent = new Intent(QuizzResultActivity.this,ExamQuizAtivity.class);
+                Bundle bundle = new Bundle();
                 intent.putExtra("Result",1);
                 bundle.putSerializable("ArrayList",resultList);
                 intent.putExtra("Bundle",bundle);

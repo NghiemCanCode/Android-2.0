@@ -38,7 +38,7 @@
             android:exported="true" />
         <activity
             android:name=".Lesson.LessonExamActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".Lesson.LessonQuizActivity"
             android:exported="true" />

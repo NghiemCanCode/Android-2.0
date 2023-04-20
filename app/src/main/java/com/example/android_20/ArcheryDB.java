@@ -105,7 +105,7 @@ public class ArcheryDB {
         db.close();
     }
     public void updateViewed(int IDQuestion, int getViewed){
-        db=openDB();
+        db = openDB();
         ContentValues values=new ContentValues();
 
         values.put("Viewed",getViewed+1);
@@ -114,7 +114,7 @@ public class ArcheryDB {
         db.close();
     }
     public void updateWrong(int IDQuestion, int getWrong){
-        db=openDB();
+        db = openDB();
         ContentValues values= new ContentValues();
         values.put("WrongCount",getWrong+1);
         db.update("tblQuestion",values,"IDQuestion="
@@ -234,14 +234,14 @@ public class ArcheryDB {
         db.close();
     }
     public void UpdateNote(int IdLesson, String newContent){
-        db=openDB();
+        db = openDB();
         ContentValues values = new ContentValues();
         values.put("Content",newContent);
         db.update("tblNotes",values,"IdLesson=" + IdLesson,null);
         db.close();
     }
     public void DeleteNote(int IdLesson){
-        db=openDB();
+        db = openDB();
         db.delete("tblNotes","IdLesson="+IdLesson,null);
         db.close();
     }

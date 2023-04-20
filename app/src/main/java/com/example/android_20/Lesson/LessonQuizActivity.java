@@ -43,7 +43,7 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
         currentQuizz = quizzes.get(0);
         tb = findViewById(R.id.tbLessonQuizz);
 
-        tb.setTitle(nameLesson);
+      //  tb.setTitle(nameLesson);
 
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,7 +52,6 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
         fragmentTransaction.replace(R.id.FM, new QuizzFragment());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-
 
         recyclerView = findViewById(R.id.rvQuizz);
 

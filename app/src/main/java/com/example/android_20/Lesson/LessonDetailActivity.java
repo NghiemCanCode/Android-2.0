@@ -1,7 +1,7 @@
 package com.example.android_20.Lesson;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -10,19 +10,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_20.ArcheryDB;
-import com.example.android_20.LessonActivity;
+
 import com.example.android_20.NoteActivity;
 import com.example.android_20.R;
 import com.example.android_20.model.Lesson;
-import com.example.android_20.model.Notes;
+
+import java.util.Objects;
+
 
 public class LessonDetailActivity extends AppCompatActivity {
     TextView tvDetailC, tvDetailNameC;
@@ -43,15 +43,12 @@ public class LessonDetailActivity extends AppCompatActivity {
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
 
         setSupportActionBar(tb);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        btQuestionC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LessonDetailActivity.this, LessonQuizActivity.class);
-                intent.putExtra("LessonID", ls.getIDLesson());
-                startActivity(intent);
-            }
+        btQuestionC.setOnClickListener(view -> {
+            Intent intent = new Intent(LessonDetailActivity.this, LessonQuizActivity.class);
+            intent.putExtra("LessonID", ls.getIDLesson());
+            startActivity(intent);
         });
 
         String a = ls.getContent();
@@ -63,6 +60,7 @@ public class LessonDetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.lesson_option_menu, menu);
+
         menu.getItem(1).setIcon(R.drawable.baseline_star_border_24);
         menu.getItem(0).setIcon(R.drawable.baseline_notes_24);
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);

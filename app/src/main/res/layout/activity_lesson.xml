@@ -20,7 +20,6 @@
         android:background="#03ef62"
         />
 
-
     <androidx.appcompat.widget.Toolbar
         android:id ="@+id/tbLessonMenu"
         app:layout_constraintEnd_toEndOf="parent"

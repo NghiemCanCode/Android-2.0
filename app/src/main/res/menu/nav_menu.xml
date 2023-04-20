@@ -7,7 +7,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/itClass"
-            android:title="Lớp Học"
+            android:title="Thay Đổi Lớp"
             android:icon="@drawable/baseline_arrow_drop_down_24"
             />
             <item
