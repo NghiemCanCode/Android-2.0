@@ -31,14 +31,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     BottomNavigationView mnBottom;
     Toolbar tb;
 
+    //db.copydb day db vo may
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.itMenu:
-                Intent i = new Intent(MainActivity.this, SettingActivity.class);
-                startActivity(i);
-                return true;
-        }
         if(drawerToggle.onOptionsItemSelected(item)){
             return true;
         }
@@ -61,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
-//        drawer layout
+        //drawer layout
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_home);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
@@ -70,9 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//chúng ta kích hoạt nút quay lại trong thanh hành động
         navigationView.setNavigationItemSelectedListener(this);
 
-        loadFragment(new HomeFragment());// khi khoi tao ung dung len hien thi homefragment
+        loadFragment(new HomeFragment());// khi khoi tao ung dung len hien thi home fragment
     }
-
 
     @NonNull
     private NavigationBarView.OnItemSelectedListener getListener() {
@@ -120,11 +114,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.itClass:
+                Intent i = new Intent(MainActivity.this, ChoiceActivity.class);
+                startActivity(i);
                 Toast.makeText(MainActivity.this, "Class Selected", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.itDefault:
@@ -135,6 +130,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.itCall:
                 Toast.makeText(MainActivity.this, "Call Selected", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.itSetting:
+                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, "Setting Selected", Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;

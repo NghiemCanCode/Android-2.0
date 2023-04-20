@@ -240,7 +240,7 @@ public class ArcheryDB {
         db.close();
         return notes;
     }
-    public int getViewed(int Class, int Subject ){
+    public int getViewed(int Class, int Subject ){//nhan tong so cau tra loi
         int viewed= 0;
         db=openDB();
        String sql = "SELECT SUM(Viewed) FROM tblQuestion WHERE IDSubject == " + Subject
@@ -251,17 +251,17 @@ public class ArcheryDB {
        db.close();
        return viewed;
     }
-    public int getWrong(int Class, int Subject){
+    public int getWrong(int Class, int Subject){//nhan so cau sai
         int Wrongs =0;
         db= openDB();
         Cursor cursor=db.rawQuery("SELECT SUM(WrongCount)  FROM tblQuestion WHERE IDSubject == " + Subject
-                +"AND IDClass= " + Class, null);
+                +"AND IDClass= " + Class, null);//lay tong so cau sai tu bang question
         Wrongs= cursor.getInt(0);
         cursor.close();
         db.close();
         return Wrongs;
     }
-    public ArrayList<Question> get5Wrong(int Class, int Subject){
+    public ArrayList<Question> get5Wrong(int Class, int Subject){// nhan 5 cau sai nhieu nhat
         ArrayList<Question> get5wrongs = new ArrayList<>();
         db = openDB();
         Cursor cursor = db.rawQuery("SELECT TOP 5 * FROM tblQuestion WHERE IDSubject == " + Subject

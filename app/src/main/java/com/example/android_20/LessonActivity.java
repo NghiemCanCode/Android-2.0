@@ -62,6 +62,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
 
         sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
         int Grade = sharedPreferences.getInt("Class", -1);
+
         tb = findViewById(R.id.tbLessonMenu);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -121,17 +122,16 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         //lay menu ra
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_view, menu);
-        menu.getItem(0).setIcon(R.drawable.baseline_search_24);
+//        menu.getItem(0).setIcon(R.drawable.baseline_search_24);
 
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);//truy cap den dich vu tim kiem cua he thong
         MenuItem menuItem = menu.findItem(R.id.mnSearch);
         SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));//lay info tim kiem, lien ket doi tuong searchview voi thanh phan tim kiem cua he thong
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(LessonActivity.this);
         rvListC.setLayoutManager(layoutManager);
-
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -140,7 +140,6 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
                 if(query.length()>0){
                     for (int i = 0; i < lstLesson.size(); i++){
                         if(lstLesson.get(i).getName().toUpperCase().contains(query.toUpperCase())){
-
                            Lesson lesson = new Lesson();
                            lesson.setName(lstLesson.get(i).getName());
                            lesson.setIDLesson(lstLesson.get(i).getIDLesson());
