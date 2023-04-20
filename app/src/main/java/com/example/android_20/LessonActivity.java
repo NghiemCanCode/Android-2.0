@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telecom.Call;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     ArcheryDB archeryDB;
     ArrayList<Lesson> searchList;
     Toolbar tb;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +60,14 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         archeryDB = new ArcheryDB(this);
         archeryDB.copyDatabase();
 
-
+        sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
+        int Grade = sharedPreferences.getInt("Class", -1);
         tb = findViewById(R.id.tbLessonMenu);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rvListC = findViewById(R.id.rvLesson);
-        lstLesson = archeryDB.getLesson(Utils.Grade, Utils.Subject);
+        lstLesson = archeryDB.getLesson(Grade, Utils.Subject);
 
         lessonAdapter = new LessonAdapter(lstLesson, LessonActivity.this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
