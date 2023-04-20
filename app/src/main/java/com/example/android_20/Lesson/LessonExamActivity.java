@@ -61,9 +61,9 @@ public class LessonExamActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 IDSubject=2;
-                Subject="Lịch Sử";
+                Subject = "Lịch Sử";
                 Intent intent= new Intent(LessonExamActivity.this, ExamQuizAtivity.class);
-                intent.putExtra("Class",Class);
+                intent.putExtra("Class", Class);
                 intent.putExtra("Subject", Subject);
                 intent.putExtra("IDSubject", IDSubject);
                 startActivity(intent);
@@ -73,7 +73,7 @@ public class LessonExamActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 IDSubject = 3;
-                Subject="Địa lí";
+                Subject = "Địa lí";
                 Intent intent= new Intent(LessonExamActivity.this, ExamQuizAtivity.class);
                 intent.putExtra("Class",Class);
                 intent.putExtra("Subject", Subject);

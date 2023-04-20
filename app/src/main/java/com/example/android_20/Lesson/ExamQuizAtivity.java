@@ -63,13 +63,13 @@ public class ExamQuizAtivity extends AppCompatActivity {
             quizzes=db.quizzListExam(getIntent().getIntExtra("Class",0),getIntent().getIntExtra("IDSubject",0));
 //            listQuizzExam.add(quizzes.get(0));
             while (listQuizzExam.size()<=4){
-                int dup=0;
+                int dup = 0;
                 int i = new Random().nextInt(quizzes.size()-1);
-                for(int j=0;j<listQuizzExam.size();j++){
+                for(int j = 0; j < listQuizzExam.size();j++){
                     if(listQuizzExam.get(j)==quizzes.get(i))
                         dup++;
                 }
-                if(dup==0){
+                if(dup == 0){
                     listQuizzExam.add(quizzes.get(i));
                 }
 

@@ -53,9 +53,9 @@ public class InfoFragment extends Fragment {
 
 
         //hien thi dtb len man hinh theo cong thuc 10*(Tongsocaulam - tongsocausai)/Tongsocaulam
-        tvDiemNvC.setText(String.valueOf(10*(TotalVan - WrongVan)/TotalVan));
-        tvDiemLsC.setText(String.valueOf(10*(TotalSu - WrongSu)/TotalSu));
-        tvDiemDlC.setText(String.valueOf( 10*(TotalDia - WrongSu)/TotalDia));
+        tvDiemNvC.setText(String.valueOf(10 * (TotalVan - WrongVan) / TotalVan));
+        tvDiemLsC.setText(String.valueOf(10 * (TotalSu - WrongSu) / TotalSu));
+        tvDiemDlC.setText(String.valueOf( 10 * (TotalDia - WrongSu) / TotalDia));
 
         return view;
     }

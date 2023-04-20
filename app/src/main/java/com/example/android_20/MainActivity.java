@@ -115,10 +115,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Intent intent;
+
         switch (item.getItemId()) {
             case R.id.itClass:
-                intent = new Intent(MainActivity.this, ChoiceActivity.class);
+                Intent intent = new Intent(MainActivity.this, ChoiceActivity.class);
                 startActivity(intent);
                 break;
 //            case R.id.itDefault:
@@ -127,9 +127,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            case R.id.itInfoApps:
 //                Toast.makeText(MainActivity.this, "Info Selected", Toast.LENGTH_SHORT).show();
 //                break;
-            case R.id.itCall:
-                intent = new Intent(MainActivity.this, SettingActivity.class);
-                startActivity(intent);
+//            case R.id.itCall:
+//
+//                break;
+            case  R.id.itSetting:
+                Intent intent1 = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent1);
                 break;
         }
         return true;
