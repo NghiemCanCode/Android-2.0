@@ -22,6 +22,9 @@ public class SettingActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     ImageView ivBack;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
