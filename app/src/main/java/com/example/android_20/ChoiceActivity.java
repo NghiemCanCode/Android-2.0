@@ -17,6 +17,7 @@ public class ChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice);
+
         sharedPreferences = getSharedPreferences(Utils.filename, MODE_PRIVATE);
         ivChoice1C = findViewById(R.id.tv1Choice);
         ivChoice2C = findViewById(R.id.tv2Choice);
@@ -30,16 +31,13 @@ public class ChoiceActivity extends AppCompatActivity {
 
     @NonNull
     private View.OnClickListener listener(int Class) {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("Class", Class);
-                editor.apply();
-                Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        return view -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("Class", Class);
+            editor.apply();
+            Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         };
     }
 }

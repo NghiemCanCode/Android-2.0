@@ -247,7 +247,7 @@ public class ArcheryDB {
     }
     public ArrayList<Notes> getNotes(int Lesson){
         ArrayList<Notes> notes=new ArrayList<>();
-        db=openDB();
+        db = openDB();
         Cursor cursor=db.rawQuery("SELECT * FROM tblNotes " +
                 "WHERE IdLesson == "+ Lesson,null);
         while (cursor.moveToNext()){
@@ -259,6 +259,56 @@ public class ArcheryDB {
         cursor.close();
         db.close();
         return notes;
+    }
+    public int getViewed(int Class, int Subject ){//nhan tong so cau tra loi
+        int viewed= 0;
+        db = openDB();
+        String sql = "SELECT SUM(Viewed) FROM tblQuestion WHERE IDSubject == " + Subject
+               +" AND IDClass == " + Class;
+
+        Cursor cursor= db.rawQuery(sql, null);
+        while (cursor.moveToNext()){
+            viewed = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return viewed;
+    }
+    public int getWrong(int Class, int Subject){//nhan so cau sai
+        int Wrongs = 0;
+        db = openDB();
+        Cursor cursor = db.rawQuery(
+                "SELECT SUM(WrongCount) FROM tblQuestion WHERE IDSubject == " + Subject +
+                        " AND IDClass == " + Class
+                , null);
+        //lay tong so cau sai tu bang question
+
+        while (cursor.moveToNext()){
+            Wrongs = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+        return Wrongs;
+    }
+    public ArrayList<Question> get5Wrong(int Class, int Subject){// nhan 5 cau sai nhieu nhat
+        ArrayList<Question> get5wrongs = new ArrayList<>();
+        db = openDB();
+        Cursor cursor = db.rawQuery("SELECT TOP 5 * FROM tblQuestion WHERE IDSubject == " + Subject
+                +"AND IDClass= " + Class + "ORDER BY WrongCount DES", null);
+
+        while (cursor.moveToNext()){
+            int idQuestion = cursor.getInt(0);
+            int idSubject = cursor.getInt(1);
+            int idClass = cursor.getInt(2);
+            int idLesson = cursor.getInt(3);
+            int viewed = cursor.getInt(4);
+            String content = cursor.getString(5);
+            int wrong = cursor.getInt(6);
+            get5wrongs.add(new Question(idQuestion, idSubject, idClass, idLesson, viewed, content, wrong));
+        }
+        cursor.close();
+        db.close();
+        return get5wrongs;
     }
 
 }

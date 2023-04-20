@@ -9,7 +9,6 @@
     android:stretchColumns="1"
     tools:context=".fragment.InfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/tvHeader2"
         android:layout_width="wrap_content"
@@ -24,128 +23,131 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
+
+
     <TextView
         android:id="@+id/tvDiem"
+        style="@style/TEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="50dp"
         android:text="Điểm Trung Bình: "
         android:textSize="25sp"
-        style="@style/TEXT"
-        app:layout_constraintTop_toBottomOf="@+id/tvHeader2"
-        android:layout_marginTop="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
-        />
-    <TableLayout
-        android:id="@+id/tlCol"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeader2" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/vcV"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        style="@style/BUTTON"
-        app:layout_constraintTop_toBottomOf="@+id/tvDiem"
-        android:layout_marginTop="16dp"
-        >
-        <TableRow>
-            <TextView
-                android:text="Ngữ Văn: "
-                android:textSize="20sp"
-                android:textStyle="bold"
-                style="@style/TEXT"
-                android:layout_marginLeft="16dp"
-                />
-            <TextView
-                android:id="@+id/tvDiemNv"
-                android:layout_width="wrap_content"
-                android:text="0"
-                style="@style/TEXT"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                />
-            <TextView
-                android:text="Lịch Sử:"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                style="@style/TEXT"
-                android:layout_marginLeft="48dp"
-                />
-            <TextView
-                android:id="@+id/tvDiemLs"
-                android:layout_width="wrap_content"
-                android:text="1"
-                style="@style/TEXT"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                />
-            <TextView
-                android:text="Địa Lý:"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                style="@style/TEXT"
-                android:layout_marginLeft="48dp"
-                />
-            <TextView
-                android:id="@+id/tvDiemDl"
-                android:layout_width="wrap_content"
-                android:textSize="20sp"
-                android:text="1"
-                style="@style/TEXT"
-                android:textStyle="bold"
-                />
-        </TableRow>
-    </TableLayout>
-    <TextView
-        android:id="@+id/tvSai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Số câu làm sai:"
-        android:textSize="25sp"
-        style="@style/TEXT"
-        app:layout_constraintTop_toBottomOf="@+id/tlCol"
-        android:layout_marginTop="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
-        />
-    <TableLayout
-        android:id="@+id/tlCol2"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiem">
+
+        <TextView
+            style="@style/TEXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_marginStart="48dp"
+            android:text="Ngữ Văn: "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDiemNv"
+            style="@style/TEXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_gravity="right|center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        style="@style/BUTTON"
-        app:layout_constraintTop_toBottomOf="@+id/tvSai"
-        android:layout_marginTop="16dp">
-        <TableRow>
-            <TextView
-                android:id="@+id/tvCauSai"
-                android:text="Text"
-                style="@style/TEXT"
-                android:textSize="20sp"
-                />
-        </TableRow>
-    </TableLayout>
-    <TextView
-        android:id="@+id/tvBaiThich"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TEXT"
-        android:text="Bài đã đánh dấu:"
-        android:textSize="25sp"
-        app:layout_constraintTop_toBottomOf="@id/tlCol2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="16dp"
-        />
-    <TableLayout
-        android:id="@+id/tlCol3"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vcV">
+
+        <TextView
+            style="@style/TEXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_marginStart="48dp"
+            android:text="Lịch Sử:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDiemLs"
+            style="@style/TEXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:text="1"
+            android:layout_marginEnd="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/vcD"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        style="@style/BUTTON"
-        app:layout_constraintTop_toBottomOf="@+id/tvBaiThich"
-        android:layout_marginTop="16dp">
-        <TableRow>
-            <TextView
-                android:id="@+id/tvMark"
-                android:text="Text"
-                style="@style/TEXT"
-                android:textSize="20sp"
-                />
-        </TableRow>
-    </TableLayout>
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            style="@style/TEXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_marginStart="48dp"
+            android:text="Địa Lý:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDiemDl"
+            style="@style/TEXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:text="1"
+            android:textSize="18sp"
+            android:layout_marginEnd="20dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

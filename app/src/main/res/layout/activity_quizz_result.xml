@@ -47,11 +47,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/roung_back_green"
-            android:textAllCaps="false"
-            android:text="View Result"
             android:layout_marginEnd="15dp"
-            />
+            android:background="@drawable/roung_back_green"
+            android:text="Xem Kết Quả"
+            android:textAllCaps="false" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAgain"
             android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/roung_back_green"
             android:textAllCaps="false"
-            android:text="Start Again"
+            android:text="Bắt Đầu Lại"
             />
     </LinearLayout>
 </RelativeLayout>

@@ -27,7 +27,7 @@
             />
         <item
             android:id="@+id/itSetting"
-            android:title="Setting"
+            android:title="Cài Đặt"
             android:icon="@drawable/baseline_settings_24"
             />
     </group>

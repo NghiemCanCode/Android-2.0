@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Lesson.LessonExamActivity"
     android:background="@drawable/background">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbLessonExam"
@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="zvzv" />
+        app:title="Thi" />
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -24,10 +24,10 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
-        android:text="Archery Test"
+        android:text="Chọn Môn Thi"
         android:textColor="@color/black"
         android:layout_below="@id/tbLessonExam"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold" />
     <GridLayout
         android:id="@+id/GL"
@@ -43,10 +43,11 @@
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="0"
+            app:cardBackgroundColor="#FED9CD"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            app:cardBackgroundColor="@color/green"
+
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true"
 
@@ -63,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:src="@drawable/nv"></ImageView>
+                    android:src="@drawable/nv"/>
 
                 <TextView
                     android:id="@+id/tvNV"
@@ -72,7 +73,7 @@
 
                     android:text="Ngữ văn"
                     android:textColor="@color/black"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -81,14 +82,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"
-            android:layout_column="0"
             android:layout_rowWeight="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            app:cardBackgroundColor="@color/green"
+            app:cardBackgroundColor="#CDFEF2"
             app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            >
+            app:cardUseCompatPadding="true">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,15 +102,14 @@
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ls"></ImageView>
-
+                    android:src="@drawable/ls"/>
                 <TextView
                     android:id="@+id/tvLS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lịch sử"
                     android:textColor="@color/black"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -122,7 +122,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            app:cardBackgroundColor="@color/green"
+            app:cardBackgroundColor="#FEFECD"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true"
             >
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
-                    android:src="@drawable/dl"></ImageView>
+                    android:src="@drawable/dl"/>
 
                 <TextView
                     android:id="@+id/tvDL"
@@ -146,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:text="Địa lí"
                     android:textColor="@color/black"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
