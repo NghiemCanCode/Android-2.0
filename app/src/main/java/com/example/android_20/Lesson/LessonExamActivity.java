@@ -1,10 +1,15 @@
 package com.example.android_20.Lesson;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.android_20.ArcheryDB;
@@ -21,6 +26,7 @@ public class LessonExamActivity extends AppCompatActivity {
     private String Subject="";
     private int IDSubject;
     CardView cardNV, cardLS, cardDL;
+    Toolbar tb;
     ArcheryDB db;
     ArrayList<Lesson> lstLesson;
     @Override
@@ -33,8 +39,9 @@ public class LessonExamActivity extends AppCompatActivity {
         cardDL=findViewById(R.id.cardDL);
         db = new ArcheryDB(this);
         db.copyDatabase();
-
-
+        tb=findViewById(R.id.tbLessonExam);
+        setSupportActionBar(tb);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         cardNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,5 +78,23 @@ public class LessonExamActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.lesson_exam_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

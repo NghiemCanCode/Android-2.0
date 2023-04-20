@@ -15,8 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="zvzv" />
-
+        app:title="Thi"
+        />
     <FrameLayout
         android:id="@+id/FM"
         android:layout_width="match_parent"

@@ -105,7 +105,23 @@ public class ArcheryDB {
                 + lesson.getIDLesson(), null);
         db.close();
     }
+    public void updateViewed(int IDQuestion, int getViewed){
+        db=openDB();
+        ContentValues values=new ContentValues();
 
+        values.put("Viewed",getViewed+1);
+        db.update("tblQuestion",values, "IDQuestion="
+                + IDQuestion,null);
+        db.close();
+    }
+    public void updateWrong(int IDQuestion, int getWrong){
+        db=openDB();
+        ContentValues values= new ContentValues();
+        values.put("WrongCount",getWrong+1);
+        db.update("tblQuestion",values,"IDQuestion="
+                + IDQuestion,null);
+        db.close();
+    }
     public QuizzList quizzList(int Class, int Subject, int Lesson){
         ArrayList<Question> questions = new ArrayList<>();
         ArrayList<ArrayList<Answer>> answers = new ArrayList<>();
@@ -223,6 +239,11 @@ public class ArcheryDB {
         ContentValues values = new ContentValues();
         values.put("Content",newContent);
         db.update("tblNotes",values,"IdLesson=" + IdLesson,null);
+        db.close();
+    }
+    public void DeleteNote(int IdLesson){
+        db=openDB();
+        db.delete("tblNotes","IdLesson="+IdLesson,null);
         db.close();
     }
     public ArrayList<Notes> getNotes(int Lesson){
