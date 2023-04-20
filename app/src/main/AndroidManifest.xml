@@ -52,6 +52,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Lesson.QuizzResultActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

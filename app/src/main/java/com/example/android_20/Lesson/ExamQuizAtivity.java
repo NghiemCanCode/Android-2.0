@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
     Button btnNext,btnPre;
     ArrayList<Quizz> quizzes;
     ArrayList<Quizz> listQuizzExam;
+    CountDownTimer countDownTimer;
     public int Result;
     int position=0;
     public int correct=0;
@@ -59,22 +61,25 @@ public class ExamQuizAtivity extends AppCompatActivity {
         }
         else {
             quizzes=db.quizzListExam(getIntent().getIntExtra("Class",0),getIntent().getIntExtra("IDSubject",0));
-
-            while (listQuizzExam.size()<=4){
-                int dup=0;
-                int i = new Random().nextInt(quizzes.size()-1);
-                for(int j=0;j<listQuizzExam.size();j++){
-                    if(listQuizzExam.get(j)==quizzes.get(i))
-                        dup++;
-                }
-                if(dup==0)
-                    listQuizzExam.add(quizzes.get(i));
-            }
+            listQuizzExam.add(quizzes.get(0));
+//            while (listQuizzExam.size()<=4){
+//                int dup=0;
+//                int i = new Random().nextInt(quizzes.size()-1);
+//                for(int j=0;j<listQuizzExam.size();j++){
+//                    if(listQuizzExam.get(j)==quizzes.get(i))
+//                        dup++;
+//                }
+//                if(dup==0){
+//                    listQuizzExam.add(quizzes.get(i));
+//                }
+//
+//            }
         }
 
 
 
         currentQuizz=listQuizzExam.get(position);
+        db.updateViewed(listQuizzExam.get(position).getQuestion().getIDQuestion(),listQuizzExam.get(position).getQuestion().getViewed());
         tb = findViewById(R.id.tbLessonQuizz);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -136,6 +141,9 @@ public class ExamQuizAtivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     public int getPosition(){
         return position;
     }
@@ -143,6 +151,24 @@ public class ExamQuizAtivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.lesson_quizzexam_menu, menu);
+
+        countDownTimer= new CountDownTimer(120000,1000) {
+            @Override
+            public void onTick(long l) {
+                menu.getItem(0).setTitle(l/1000+"s");
+            }
+
+            @Override
+            public void onFinish() {
+                Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
+                Bundle bundle=new Bundle();
+                intent.putExtra("correct",correct);
+                bundle.putSerializable("ArrayList",listQuizzExam);
+                intent.putExtra("Bundle",bundle);
+                startActivity(intent);
+            }
+        };
+        countDownTimer.start();
         return super.onCreateOptionsMenu(menu);
     }
 
