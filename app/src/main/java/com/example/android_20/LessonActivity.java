@@ -87,7 +87,6 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         archeryDB.updateLessonCheck(lesson, 1);
         i.putExtra("Marked", lesson);
         startActivity(i);
-        resetData();
     }
 
     @Override
@@ -110,15 +109,21 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
 
     @Override
     protected void onResume() {
-        resetData();
         super.onResume();
+        resetData();
     }
 
-    @Override
-    protected void onRestart() {
-        resetData();
-        super.onRestart();
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        resetData();
+//    }
+
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        resetData();
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //searchview

@@ -28,6 +28,7 @@ public class LessonDetailActivity extends AppCompatActivity {
     TextView tvDetailC, tvDetailNameC;
     ArcheryDB db;
     Toolbar tb;
+    Button btQuestionC;
     int flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,23 @@ public class LessonDetailActivity extends AppCompatActivity {
         tb = findViewById(R.id.tbLessonContent);
         tvDetailC = findViewById(R.id.tvLessonDetail);
         tvDetailNameC = findViewById(R.id.tvLessonNameDetail);
+
+        btQuestionC = findViewById(R.id.btQuestion);
+
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
 
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        int id= ls.getIDLesson();
+
+        btQuestionC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LessonDetailActivity.this, LessonQuizActivity.class);
+                intent.putExtra("LessonID", ls.getIDLesson());
+                startActivity(intent);
+            }
+        });
+
         String a = ls.getContent();
         String b = ls.getName();
         tvDetailC.setText(a);

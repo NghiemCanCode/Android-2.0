@@ -87,7 +87,6 @@ public class ArcheryDB {
 
         db.update("tblLesson", values, "IDLesson="
                 + lesson.getIDLesson(), null);
-
         db.close();
     }
     public void updateLessonCheck(Lesson lesson, int Check){

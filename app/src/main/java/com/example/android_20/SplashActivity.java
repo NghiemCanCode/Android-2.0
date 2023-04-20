@@ -10,12 +10,14 @@ import android.os.Looper;
 
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
-
+    ArcheryDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        db = new ArcheryDB(this);
+        db.copyDatabase();
         sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 

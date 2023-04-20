@@ -33,15 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.itMenu:
-                Intent i = new Intent(MainActivity.this, SettingActivity.class);
-                startActivity(i);
-                return true;
-        }
-        if(drawerToggle.onOptionsItemSelected(item)){
-            return true;
-        }
+        drawerToggle.onOptionsItemSelected(item);
         return true;
     }
 

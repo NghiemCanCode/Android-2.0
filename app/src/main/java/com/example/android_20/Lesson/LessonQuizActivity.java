@@ -34,7 +34,7 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_quiz);
 
-        int lessonId = getIntent().getIntExtra("LessonID", 1);
+        int lessonId = getIntent().getIntExtra("LessonID", -1);
         String nameLesson = getIntent().getStringExtra("LessonName");
 
         archeryDB = new ArcheryDB(this);

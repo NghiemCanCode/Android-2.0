@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomeFragment.this.getActivity(), LessonActivity.class);
-                i.putExtra("Subject", 2);
+                i.putExtra("Subject", 3);
                 startActivity(i);
             }
         });
@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomeFragment.this.getActivity(), LessonActivity.class);
-                i.putExtra("Subject", 3);
+                i.putExtra("Subject", 2);
                 startActivity(i);
             }
         });

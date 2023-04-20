@@ -1,12 +1,10 @@
 package com.example.android_20.QuizzFragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android_20.Lesson.ExamQuizAtivity;
-import com.example.android_20.Lesson.LessonQuizActivity;
 import com.example.android_20.R;
 import com.example.android_20.model.Quizz;
-
-import java.util.ArrayList;
-import java.util.Random;
-
 
 public class QuizzExamFragment extends Fragment {
     private View view;
@@ -29,11 +22,7 @@ public class QuizzExamFragment extends Fragment {
     Quizz quizz;
 
     Button btnOP1,btnOP2,btnOP3,btnOP4;
-
-
     ExamQuizAtivity examQuizAtivity;
-
-
     public QuizzExamFragment(){}
 
     @Nullable
