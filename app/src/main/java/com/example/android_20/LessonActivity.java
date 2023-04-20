@@ -59,7 +59,6 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         tb.setTitle("Đây là môn học");
 
         archeryDB = new ArcheryDB(this);
-        archeryDB.copyDatabase();
 
         sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
         Grade = sharedPreferences.getInt("Class", -1);
@@ -83,8 +82,6 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     @Override
     public void onItemClickListener(Lesson lesson) {
         Intent i = new Intent(LessonActivity.this, LessonDetailActivity.class);
-        archeryDB = new ArcheryDB(this);
-        archeryDB.updateLessonCheck(lesson, 1);
         i.putExtra("Marked", lesson);
         startActivity(i);
     }
@@ -107,23 +104,25 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         lessonAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        resetData();
-    }
-
 //    @Override
 //    protected void onPause() {
-//        super.onPause();
 //        resetData();
+//        super.onPause();
 //    }
 
+    @Override
+    protected void onResume() {
+        resetData();
+        super.onResume();
+    }
+
+
 //    @Override
-//    protected void onRestart() {
-//        super.onRestart();
+//    protected void onStop() {
 //        resetData();
+//        super.onStop();
 //    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //searchview

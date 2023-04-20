@@ -31,7 +31,6 @@ public class NoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
         db = new ArcheryDB(this);
-        db.copyDatabase();
         db.openDB();
 
         tb = findViewById(R.id.tbLessonContent);

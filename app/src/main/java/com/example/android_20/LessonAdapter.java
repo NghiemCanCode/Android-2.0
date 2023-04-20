@@ -32,8 +32,6 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         this.listener =listener;
     }
 
-
-
     @NonNull
     @Override
     public LessonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -60,6 +58,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
         if (item.getView() == 1){
             holder.ibStick.setImageResource(R.drawable.baseline_check_24);
+        }
+        else{
+            holder.ibStick.setImageResource(0);
         }
 
         holder.itemView.setOnClickListener(view -> listener.onItemClickListener(item));

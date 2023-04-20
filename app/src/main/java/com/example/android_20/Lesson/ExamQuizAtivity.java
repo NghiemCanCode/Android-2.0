@@ -50,10 +50,10 @@ public class ExamQuizAtivity extends AppCompatActivity {
         btnNext=findViewById(R.id.btnNext);
         btnPre=findViewById(R.id.btnPre);
         db=new ArcheryDB(this);
-        db.copyDatabase();
+
         btnPre.setEnabled(true);
         btnNext.setEnabled(true);
-        listQuizzExam=new ArrayList<>();
+        listQuizzExam = new ArrayList<>();
         if(getIntent().getIntExtra("Result",0)==1){
             Result=1;
             Bundle args=getIntent().getBundleExtra("Bundle");
@@ -61,22 +61,20 @@ public class ExamQuizAtivity extends AppCompatActivity {
         }
         else {
             quizzes=db.quizzListExam(getIntent().getIntExtra("Class",0),getIntent().getIntExtra("IDSubject",0));
-            listQuizzExam.add(quizzes.get(0));
-//            while (listQuizzExam.size()<=4){
-//                int dup=0;
-//                int i = new Random().nextInt(quizzes.size()-1);
-//                for(int j=0;j<listQuizzExam.size();j++){
-//                    if(listQuizzExam.get(j)==quizzes.get(i))
-//                        dup++;
-//                }
-//                if(dup==0){
-//                    listQuizzExam.add(quizzes.get(i));
-//                }
-//
-//            }
+//            listQuizzExam.add(quizzes.get(0));
+            while (listQuizzExam.size()<=4){
+                int dup=0;
+                int i = new Random().nextInt(quizzes.size()-1);
+                for(int j=0;j<listQuizzExam.size();j++){
+                    if(listQuizzExam.get(j)==quizzes.get(i))
+                        dup++;
+                }
+                if(dup==0){
+                    listQuizzExam.add(quizzes.get(i));
+                }
+
+            }
         }
-
-
 
         currentQuizz=listQuizzExam.get(position);
         db.updateViewed(listQuizzExam.get(position).getQuestion().getIDQuestion(),listQuizzExam.get(position).getQuestion().getViewed());

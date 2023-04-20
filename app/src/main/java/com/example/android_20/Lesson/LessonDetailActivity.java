@@ -84,6 +84,7 @@ public class LessonDetailActivity extends AppCompatActivity {
             case android.R.id.home:
                 Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
                 db.updateLessonMarked(ls, flag);
+                db.updateLessonCheck(ls, 1);
                 finish();
                 return true;
             case R.id.itNote:

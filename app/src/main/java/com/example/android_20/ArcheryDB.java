@@ -92,14 +92,14 @@ public class ArcheryDB {
     public void updateLessonCheck(Lesson lesson, int Check){
         db = openDB();
         ContentValues values = new ContentValues();
-
         values.put("IDClass", lesson.getIDClass());
         values.put("IDSubject", lesson.getIDSubject());
         values.put("Name", lesson.getName());
         values.put("Unit", lesson.getUnit());
         values.put("Content",lesson.getContent());
         values.put("Marked", lesson.getMarked());
-        values.put("Viewed", Check);
+        values.put("Viewed", 1);
+
         db.update("tblLesson", values, "IDLesson="
                 + lesson.getIDLesson(), null);
         db.close();
