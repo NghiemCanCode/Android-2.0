@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7f3eb"
+
+    style="@style/SCREEN"
     tools:context=".Lesson.LessonQuizActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -18,6 +19,7 @@
         app:title="Thi"
         />
     <FrameLayout
+        style="@style/SCREEN"
         android:id="@+id/FM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
