@@ -93,12 +93,12 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String strSearch = charSequence.toString();
-                if(charSequence == null){
+                if(strSearch.isEmpty()){
                     lstLesson = lstLessonold;
                 }else {
                     ArrayList<Lesson> list = new ArrayList<>();
                     for (Lesson lesson : lstLessonold){
-                        if(lesson.getName().toLowerCase().contains(charSequence.toString())){
+                        if(lesson.getName().toLowerCase().contains(strSearch.toLowerCase())){
                             list.add(lesson);
                         }
                     }
