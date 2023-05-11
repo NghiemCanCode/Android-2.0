@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/SCREEN"
     android:orientation="vertical">
 <TextView
     android:layout_width="match_parent"
@@ -10,7 +11,7 @@
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-
+    style="@style/TEXT"
     android:text="Hành động này sẽ xóa hết tất cả tiến trình của bạn. Bạn có chắc muốn khôi phục mặc định ứng dụng?"
     android:textSize="16sp"
     android:layout_marginTop="20dp"
