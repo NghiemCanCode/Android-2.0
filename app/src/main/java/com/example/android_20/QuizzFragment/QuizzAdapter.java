@@ -31,8 +31,7 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolder>{
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View userView = inflater.inflate(R.layout.quizlayout, parent, false);
-        ViewHolder viewHolder = new ViewHolder(userView);
-        return viewHolder;
+        return new ViewHolder(userView);
     }
     @Override
     public void onBindViewHolder(@NonNull QuizzAdapter.ViewHolder holder, int position) {
@@ -42,20 +41,17 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolder>{
             holder.tv.setBackgroundColor(Color.rgb(255,255,255));
         }
         else if (item.getTrueOrFalse() > 0){
-            holder.tv.setBackgroundColor(Color.rgb(0,255,0));
+            holder.tv.setBackgroundColor(Color.rgb(50,255,0));
         }
         else
-            holder.tv.setBackgroundColor(Color.rgb(255,0,0));
+            holder.tv.setBackgroundColor(Color.rgb(255,50,0));
 
         if(pos == holder.getAdapterPosition())
-            holder.tv.setBackgroundColor(Color.rgb(0,0,255));
+            holder.tv.setBackgroundColor(Color.rgb(166,166,166));
 
-        holder.tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onTextClick(item);
-                pos = holder.getLayoutPosition()    ;
-            }
+        holder.tv.setOnClickListener(view -> {
+            listener.onTextClick(item);
+            pos = holder.getLayoutPosition()    ;
         });
     }
 
@@ -64,7 +60,7 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolder>{
         return quizzes.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView tv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

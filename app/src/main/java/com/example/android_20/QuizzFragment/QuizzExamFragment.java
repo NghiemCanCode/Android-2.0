@@ -168,6 +168,7 @@ public class QuizzExamFragment extends Fragment {
                     return;
                 case 4:
                     btnOP4.setBackgroundResource(R.drawable.round_back_gray);
+
                     return;
                 case 0:
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);

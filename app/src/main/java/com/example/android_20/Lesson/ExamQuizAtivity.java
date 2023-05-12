@@ -24,7 +24,11 @@ import com.example.android_20.QuizzFragment.QuizzAdapter;
 import com.example.android_20.QuizzFragment.QuizzExamFragment;
 import com.example.android_20.QuizzFragment.QuizzFragment;
 import com.example.android_20.R;
+
 import com.example.android_20.model.Notes;
+
+import com.example.android_20.fragment.HomeFragment;
+
 import com.example.android_20.model.Quizz;
 
 import java.util.ArrayList;
@@ -38,8 +42,8 @@ public class ExamQuizAtivity extends AppCompatActivity {
     ArrayList<Quizz> listQuizzExam;
     CountDownTimer countDownTimer;
     public int Result;
-    int position=0;
-    public int correct=0;
+    int position = 0;
+    public int correct = 0;
     public Quizz currentQuizz;
     public ExamQuizAtivity(){
         super(R.layout.activity_lesson_quiz);
@@ -74,7 +78,6 @@ public class ExamQuizAtivity extends AppCompatActivity {
                     listQuizzExam.add(quizzes.get(i));
                     db.updateViewed(quizzes.get(i).getQuestion().getIDQuestion(),quizzes.get(i).getQuestion().getViewed());
                 }
-
             }
         }
 
@@ -99,6 +102,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
                     Intent intent=new Intent(ExamQuizAtivity.this, MainActivity.class);
                     startActivity(intent);
                 } else if (position==5) {
+
                     Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
                     Bundle bundle=new Bundle();
                     intent.putExtra("correct",correct);
@@ -127,6 +131,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
                         btnNext.setText("Trang chủ");
                     } else if (position==4) {
                         btnNext.setText("Nộp bài");
+
                     }
                     currentQuizz = listQuizzExam.get(position);
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

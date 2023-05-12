@@ -21,8 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder> {
+public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder> implements Filterable{
     ArrayList<Lesson> lstLesson;
+    ArrayList<Lesson> lstLessonold;
     Context context;
     Listener listener;
 
@@ -30,8 +31,8 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
     public LessonAdapter(ArrayList<Lesson> lstLesson, Listener listener) {
         this.lstLesson = lstLesson;
         this.listener =listener;
+        this.lstLessonold= lstLesson;
     }
-
     @NonNull
     @Override
     public LessonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -72,7 +73,6 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         return lstLesson.size();
     }
 
-
     class LessonViewHolder extends RecyclerView.ViewHolder {
         TextView tvNameC;
         ImageButton ibLessonMarkedC, ibStick;
@@ -87,7 +87,34 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         void onItemClickListener(Lesson lesson);
         void onMarked(Lesson lesson);
     }
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String strSearch = charSequence.toString();
+                if(strSearch.isEmpty()){
+                    lstLesson = lstLessonold;
+                }else {
+                    ArrayList<Lesson> list = new ArrayList<>();
+                    for (Lesson lesson : lstLessonold){
+                        if(lesson.getName().toLowerCase().contains(strSearch.toLowerCase())){
+                            list.add(lesson);
+                        }
+                    }
+                    lstLesson = list;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = lstLesson;
+                return filterResults;
+            }
 
-
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                lstLesson = (ArrayList<Lesson>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
 }

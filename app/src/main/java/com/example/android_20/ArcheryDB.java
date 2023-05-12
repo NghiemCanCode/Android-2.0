@@ -281,7 +281,6 @@ public class ArcheryDB {
                         " AND IDClass == " + Class
                 , null);
         //lay tong so cau sai tu bang question
-
         while (cursor.moveToNext()){
             Wrongs = cursor.getInt(0);
         }
