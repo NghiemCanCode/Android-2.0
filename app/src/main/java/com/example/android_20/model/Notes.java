@@ -1,10 +1,14 @@
 package com.example.android_20.model;
 
-public class Notes {
+import com.example.android_20.NoteAdapter;
+
+import java.io.Serializable;
+
+public class Notes implements Serializable {
     private int IdNote;
     private int IdLesson;
     private String content;
-
+    public Notes(){}
     public Notes(int idNote, int idLesson, String content) {
         IdNote = idNote;
         IdLesson = idLesson;

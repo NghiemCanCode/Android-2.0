@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.android_20.ArcheryDB;
 
 import com.example.android_20.NoteActivity;
+import com.example.android_20.NoteListActivity;
 import com.example.android_20.R;
 import com.example.android_20.model.Lesson;
 
@@ -87,7 +88,7 @@ public class LessonDetailActivity extends AppCompatActivity {
                 return true;
             case R.id.itNote:
                 Lesson lss = getIntent().getSerializableExtra("Marked", Lesson.class);
-                Intent intent= new Intent(LessonDetailActivity.this, NoteActivity.class);
+                Intent intent= new Intent(LessonDetailActivity.this, NoteListActivity.class);
                 intent.putExtra("IdLesson",lss.getIDLesson());
                 startActivity(intent);
                 return true;

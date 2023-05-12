@@ -61,7 +61,8 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/roung_back_green"
             android:textAllCaps="false"
-            android:text="Về Trang Chủ"
+            android:text="Trang chủ"
+
             />
     </LinearLayout>
 </RelativeLayout>

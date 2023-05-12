@@ -32,6 +32,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.android_20.Lesson.LessonDetailActivity;
+
 import com.example.android_20.model.Lesson;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +42,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     RecyclerView rvListC;
     ArrayList<Lesson> lstLesson;
     LessonAdapter lessonAdapter;
+
     ArcheryDB archeryDB;
     Toolbar tb;
     int Grade, Subject;
@@ -73,6 +75,7 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         lstLesson = archeryDB.getLesson(Grade, Subject);
 
         lessonAdapter = new LessonAdapter(lstLesson, LessonActivity.this);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvListC.setAdapter(lessonAdapter);
         rvListC.setLayoutManager(linearLayoutManager);

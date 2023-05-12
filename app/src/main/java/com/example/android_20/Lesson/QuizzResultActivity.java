@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.android_20.MainActivity;
 import com.example.android_20.QuizzFragment.QuizzExamFragment;
 import com.example.android_20.R;
+import com.example.android_20.fragment.HomeFragment;
 import com.example.android_20.model.Quizz;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
@@ -43,6 +44,7 @@ public class QuizzResultActivity extends AppCompatActivity {
                 Intent intent= new Intent(QuizzResultActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+
             }
         });
         btnViewResult.setOnClickListener(new View.OnClickListener() {

@@ -73,7 +73,6 @@ public class ArcheryDB {
         db.close();
         return tmp;
     }
-
     public void updateLessonMarked(Lesson lesson, int Marked){
         db = openDB();
         ContentValues values = new ContentValues();
@@ -233,16 +232,16 @@ public class ArcheryDB {
         db.insert("tblNotes",null,values);
         db.close();
     }
-    public void UpdateNote(int IdLesson, String newContent){
+    public void UpdateNote(int IdNote,String newContent){
         db = openDB();
         ContentValues values = new ContentValues();
         values.put("Content",newContent);
-        db.update("tblNotes",values,"IdLesson=" + IdLesson,null);
+        db.update("tblNotes",values,"IdNote = " + IdNote,null);
         db.close();
     }
-    public void DeleteNote(int IdLesson){
+    public void DeleteNote(int IdNote){
         db = openDB();
-        db.delete("tblNotes","IdLesson="+IdLesson,null);
+        db.delete("tblNotes","IdNote="+IdNote,null);
         db.close();
     }
     public ArrayList<Notes> getNotes(int Lesson){

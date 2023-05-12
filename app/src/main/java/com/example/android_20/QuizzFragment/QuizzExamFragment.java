@@ -66,6 +66,10 @@ public class QuizzExamFragment extends Fragment {
             initalData(quizz);
             if(examQuizAtivity.Result==1){
                 revealAnswer();
+                btnOP1.setEnabled(false);
+                btnOP2.setEnabled(false);
+                btnOP3.setEnabled(false);
+                btnOP4.setEnabled(false);
             }
             btnOP1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -163,7 +167,8 @@ public class QuizzExamFragment extends Fragment {
                     btnOP3.setBackgroundResource(R.drawable.round_back_gray);
                     return;
                 case 4:
-                    btnOP4.setBackgroundResource(R.drawable.round_back_gray );
+                    btnOP4.setBackgroundResource(R.drawable.round_back_gray);
+
                     return;
                 case 0:
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);
