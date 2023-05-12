@@ -19,10 +19,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android_20.ArcheryDB;
+import com.example.android_20.MainActivity;
 import com.example.android_20.QuizzFragment.QuizzAdapter;
 import com.example.android_20.QuizzFragment.QuizzExamFragment;
 import com.example.android_20.QuizzFragment.QuizzFragment;
 import com.example.android_20.R;
+import com.example.android_20.model.Notes;
 import com.example.android_20.model.Quizz;
 
 import java.util.ArrayList;
@@ -61,7 +63,6 @@ public class ExamQuizAtivity extends AppCompatActivity {
         }
         else {
             quizzes=db.quizzListExam(getIntent().getIntExtra("Class",0),getIntent().getIntExtra("IDSubject",0));
-//            listQuizzExam.add(quizzes.get(0));
             while (listQuizzExam.size()<=4){
                 int dup = 0;
                 int i = new Random().nextInt(quizzes.size()-1);
@@ -71,13 +72,13 @@ public class ExamQuizAtivity extends AppCompatActivity {
                 }
                 if(dup == 0){
                     listQuizzExam.add(quizzes.get(i));
+                    db.updateViewed(quizzes.get(i).getQuestion().getIDQuestion(),quizzes.get(i).getQuestion().getViewed());
                 }
 
             }
         }
 
         currentQuizz=listQuizzExam.get(position);
-        db.updateViewed(listQuizzExam.get(position).getQuestion().getIDQuestion(),listQuizzExam.get(position).getQuestion().getViewed());
         tb = findViewById(R.id.tbLessonQuizz);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -94,7 +95,10 @@ public class ExamQuizAtivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 position++;
-                if(position==5){
+                if (position==5&&Result==1){
+                    Intent intent=new Intent(ExamQuizAtivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (position==5) {
                     Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
                     Bundle bundle=new Bundle();
                     intent.putExtra("correct",correct);
@@ -102,16 +106,27 @@ public class ExamQuizAtivity extends AppCompatActivity {
                     intent.putExtra("Bundle",bundle);
                     startActivity(intent);
                 }
+//                if(position==5){
+//                    Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
+//                    Bundle bundle=new Bundle();
+//                    intent.putExtra("correct",correct);
+//                    bundle.putSerializable("ArrayList",listQuizzExam);
+//                    intent.putExtra("Bundle",bundle);
+//                    startActivity(intent);
+//                }
                 else {
                     if(position>0){
                         btnPre.setEnabled(true);
                         btnPre.setBackgroundResource(R.drawable.roung_back_green);
                     }
-                    if(position==4 && Result==1){
-                        btnNext.setEnabled(false);
+                    if(position==5 && Result==1){
+                        Intent intent=new Intent(ExamQuizAtivity.this, MainActivity.class);
+                        startActivity(intent);
                     }
-                    if(position==4){
-                        btnNext.setText("Submit");
+                    if(position==4 && Result==1){
+                        btnNext.setText("Trang chủ");
+                    } else if (position==4) {
+                        btnNext.setText("Nộp bài");
                     }
                     currentQuizz = listQuizzExam.get(position);
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -126,7 +141,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
             public void onClick(View v) {
                 position--;
                 if(position<4){
-                    btnNext.setText("Next");
+                    btnNext.setText("Câu tiếp theo");
                 }
 
                 if(position==0){
@@ -149,24 +164,27 @@ public class ExamQuizAtivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.lesson_quizzexam_menu, menu);
+        if(getIntent().getIntExtra("Result",0)==0){
+            countDownTimer= new CountDownTimer(120000,1000) {
+                @Override
+                public void onTick(long l) {
+                    menu.getItem(0).setTitle(l/1000+"s");
+                }
 
-        countDownTimer= new CountDownTimer(120000,1000) {
-            @Override
-            public void onTick(long l) {
-                menu.getItem(0).setTitle(l/1000+"s");
-            }
+                @Override
+                public void onFinish() {
+                    Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
+                    Bundle bundle=new Bundle();
+                    intent.putExtra("correct",correct);
+                    bundle.putSerializable("ArrayList",listQuizzExam);
+                    intent.putExtra("Bundle",bundle);
+                    startActivity(intent);
+                }
+            };
+            countDownTimer.start();
+        }
 
-            @Override
-            public void onFinish() {
-                Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
-                Bundle bundle=new Bundle();
-                intent.putExtra("correct",correct);
-                bundle.putSerializable("ArrayList",listQuizzExam);
-                intent.putExtra("Bundle",bundle);
-                startActivity(intent);
-            }
-        };
-        countDownTimer.start();
+
         return super.onCreateOptionsMenu(menu);
     }
 

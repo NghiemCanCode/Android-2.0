@@ -66,12 +66,16 @@ public class QuizzExamFragment extends Fragment {
             initalData(quizz);
             if(examQuizAtivity.Result==1){
                 revealAnswer();
+                btnOP1.setEnabled(false);
+                btnOP2.setEnabled(false);
+                btnOP3.setEnabled(false);
+                btnOP4.setEnabled(false);
             }
             btnOP1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     quizz.setTrueOrFalse(1);
-                    btnOP1.setBackgroundResource(R.drawable.roung_back_green);
+                    btnOP1.setBackgroundResource(R.drawable.round_back_gray);
                     btnOP2.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP3.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP4.setBackgroundResource(R.drawable.round_back_white_stoke);
@@ -85,7 +89,7 @@ public class QuizzExamFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     quizz.setTrueOrFalse(2);
-                    btnOP2.setBackgroundResource(R.drawable.roung_back_green);
+                    btnOP2.setBackgroundResource(R.drawable.round_back_gray);
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP3.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP4.setBackgroundResource(R.drawable.round_back_white_stoke);
@@ -99,7 +103,7 @@ public class QuizzExamFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     quizz.setTrueOrFalse(3);
-                    btnOP3.setBackgroundResource(R.drawable.roung_back_green);
+                    btnOP3.setBackgroundResource(R.drawable.round_back_gray);
                     btnOP2.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP4.setBackgroundResource(R.drawable.round_back_white_stoke);
@@ -113,7 +117,7 @@ public class QuizzExamFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     quizz.setTrueOrFalse(4);
-                    btnOP4.setBackgroundResource(R.drawable.roung_back_green);
+                    btnOP4.setBackgroundResource(R.drawable.round_back_gray);
                     btnOP2.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP3.setBackgroundResource(R.drawable.round_back_white_stoke);
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);
@@ -154,16 +158,16 @@ public class QuizzExamFragment extends Fragment {
         else {
             switch (quizz.getTrueOrFalse()){
                 case 1:
-                    btnOP1.setBackgroundResource(R.drawable.roung_back_green);
+                    btnOP1.setBackgroundResource(R.drawable.round_back_gray);
                     return;
                 case 2:
-                    btnOP2.setBackgroundResource(R.drawable.roung_back_green);
+                    btnOP2.setBackgroundResource(R.drawable.round_back_gray);
                     return;
                 case 3:
-                    btnOP3.setBackgroundResource(R.drawable.roung_back_green);
+                    btnOP3.setBackgroundResource(R.drawable.round_back_gray);
                     return;
                 case 4:
-                    btnOP4.setBackgroundResource(R.drawable.roung_back_green);
+                    btnOP4.setBackgroundResource(R.drawable.round_back_gray);
                     return;
                 case 0:
                     btnOP1.setBackgroundResource(R.drawable.round_back_white_stoke);

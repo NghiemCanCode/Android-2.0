@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Android20"
         tools:targetApi="33">
         <activity
+            android:name=".NoteListActivity"
+            android:exported="false" />
+        <activity
             android:name=".SecondSplashActivity"
             android:exported="true" />
         <activity
@@ -38,7 +41,7 @@
             android:exported="true" />
         <activity
             android:name=".Lesson.LessonExamActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Lesson.LessonQuizActivity"
             android:exported="true" />
@@ -52,8 +55,9 @@
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Lesson.QuizzResultActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".Lesson.QuizzResultActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -13,7 +13,9 @@ import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.android_20.Lesson.ExamQuizAtivity;
 import com.example.android_20.Lesson.LessonDetailActivity;
+import com.example.android_20.Lesson.QuizzResultActivity;
 import com.example.android_20.model.Lesson;
 import com.example.android_20.model.Notes;
 
@@ -23,9 +25,9 @@ public class NoteActivity extends AppCompatActivity {
     EditText edtNoteContent;
     ArcheryDB db;
     ArrayList<Notes> notes;
-
+    Notes note;
     Toolbar tb;
-
+    int way;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +40,18 @@ public class NoteActivity extends AppCompatActivity {
 
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        notes= new ArrayList<>();
-        notes=db.getNotes(getIntent().getIntExtra("IdLesson",0));
-        if(notes.size()!=0){
-            Notes note = notes.get(0);
+        way=getIntent().getIntExtra("Way",-1);
+        if(way==2){
+            note=getIntent().getSerializableExtra("Note",Notes.class);
             edtNoteContent.setText(note.getContent());
         }
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.note_option_menu, menu);
-        menu.getItem(0).setIcon(R.drawable.baseline_delete_24);
-        menu.getItem(1).setIcon(R.drawable.baseline_save_alt_24);
+        menu.getItem(0).setIcon(R.drawable.baseline_save_alt_24);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -64,26 +62,14 @@ public class NoteActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.itSave:
-                if(notes.size()==0){
-                    db.InsertNote(getIntent().getIntExtra("IdLesson",0),edtNoteContent.getText().toString());
+                if(way==1){
+                    db.InsertNote(getIntent().getIntExtra("idLesson",-1),edtNoteContent.getText().toString());
+                } else if (way==2) {
+                    db.UpdateNote(note.getIdNote(),edtNoteContent.getText().toString());
                 }
-                else {
-                    db.UpdateNote(getIntent().getIntExtra("IdLesson",0),edtNoteContent.getText().toString());
-                }
-//                Notes notes=db.getNotes(getIntent().getIntExtra("IdLesson",0));
-//                db.UpdateNote(note.getIdLesson(),edtNoteContent.getText().toString());
-//                if(!note.getContent().equals("")){
-//                    db.InsertNote(note.getIdLesson(),edtNoteContent.getText().toString());
-//                }
-//                else {
-//                    db.UpdateNote(note.getIdLesson(),edtNoteContent.getText().toString());
-//                }
                 finish();
                 return true;
-            case R.id.itDelete:
-                db.DeleteNote(getIntent().getIntExtra("IdLesson",0));
-                finish();
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

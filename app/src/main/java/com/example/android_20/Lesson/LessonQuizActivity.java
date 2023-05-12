@@ -43,7 +43,7 @@ public class LessonQuizActivity extends AppCompatActivity implements QuizzAdapte
         currentQuizz = quizzes.get(0);
         tb = findViewById(R.id.tbLessonQuizz);
 
-        tb.setTitle(nameLesson);
+//        tb.setTitle(nameLesson);
 
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

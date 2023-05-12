@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.android_20.MainActivity;
 import com.example.android_20.QuizzFragment.QuizzExamFragment;
 import com.example.android_20.R;
+import com.example.android_20.fragment.HomeFragment;
 import com.example.android_20.model.Quizz;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
@@ -39,9 +41,10 @@ public class QuizzResultActivity extends AppCompatActivity {
         btnAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(QuizzResultActivity.this,LessonExamActivity.class);
+                Intent intent= new Intent(QuizzResultActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+
             }
         });
         btnViewResult.setOnClickListener(new View.OnClickListener() {
