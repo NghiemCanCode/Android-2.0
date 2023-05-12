@@ -28,7 +28,7 @@ public class InfoFragment extends Fragment {
     ArrayList<Question> questionArrayList;
     TextView tvCauSai1, tvCauSai2, tvCauSai3, tvCauSai4, tvCauSai5;
     SharedPreferences sharedPreferences;
-    int WrongVan=0, WrongSu=0, WrongDia=0, TotalVan=0, TotalSu=0, TotalDia=0;
+    double WrongVan=0, WrongSu=0, WrongDia=0, TotalVan=0, TotalSu=0, TotalDia=0;
     int Grade;
 
     @Override
