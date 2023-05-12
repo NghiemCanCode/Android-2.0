@@ -283,17 +283,16 @@ public class ArcheryDB {
                 , null);
         //lay tong so cau sai tu bang question
         while (cursor.moveToNext()){
-            Wrongs = cursor.getInt(0);
+            Wrongs += cursor.getInt(0);
         }
         cursor.close();
         db.close();
         return Wrongs;
     }
-    public ArrayList<Question> get5Wrong(int Class, int Subject){// nhan 5 cau sai nhieu nhat
+    public ArrayList<Question> get5Wrong(int Class){  // nhan 5 cau sai nhieu nhat
         ArrayList<Question> get5wrongs = new ArrayList<>();
         db = openDB();
-        Cursor cursor = db.rawQuery("SELECT TOP 5 * FROM tblQuestion WHERE IDSubject == " + Subject
-                +"AND IDClass= " + Class + "ORDER BY WrongCount DES", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM tblQuestion WHERE IDClass == " + Class + " ORDER BY WrongCount DESC LIMIT 5", null);
 
         while (cursor.moveToNext()){
             int idQuestion = cursor.getInt(0);
@@ -309,6 +308,26 @@ public class ArcheryDB {
         db.close();
         return get5wrongs;
     }
-
+    public Lesson getLessons(int Class, int Lesson ){
+        Lesson lesson = new Lesson();
+        db= openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM tblLesson " +
+                "WHERE IDClass == " + Class + " AND IDLesson == "+ Lesson
+                +" ORDER BY Unit ASC", null);
+        while (cursor.moveToNext()){
+            int idLesson = cursor.getInt(0);
+            int idClass = cursor.getInt(1);
+            int idSubject = cursor.getInt(2);
+            String name = cursor.getString(3);
+            int unit = cursor.getInt(4);
+            String content = cursor.getString(5);
+            int marked = cursor.getInt(6);
+            int viewed = cursor.getInt(7);
+            lesson =new Lesson(idLesson, idClass, idSubject, name, unit, content, marked, viewed);
+        }
+        cursor.close();
+        db.close();
+        return lesson;
+    }
 }
 

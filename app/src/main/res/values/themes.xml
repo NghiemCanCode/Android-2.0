@@ -27,6 +27,9 @@
     <style name="SCREEN">
         <item name="android:background">#f7f3eb</item>
     </style>
+<!--    <style name="SCREEN1">-->
+<!--        <item name="background">@drawable/background</item>-->
+<!--    </style>-->
     <!-- Text background if Light mode on -->
     <style name="TEXT">
         <item name="android:textColor">#000</item>

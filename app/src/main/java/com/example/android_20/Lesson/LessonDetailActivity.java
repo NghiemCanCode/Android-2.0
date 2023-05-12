@@ -30,6 +30,7 @@ public class LessonDetailActivity extends AppCompatActivity {
     Toolbar tb;
     Button btQuestionC;
     int flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,6 @@ public class LessonDetailActivity extends AppCompatActivity {
         btQuestionC = findViewById(R.id.btQuestion);
 
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
-
         setSupportActionBar(tb);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
