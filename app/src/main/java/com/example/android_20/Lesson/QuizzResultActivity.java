@@ -61,4 +61,8 @@ public class QuizzResultActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

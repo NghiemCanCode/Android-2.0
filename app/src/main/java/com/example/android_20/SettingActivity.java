@@ -15,14 +15,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
 public class SettingActivity extends AppCompatActivity {
 
     SwitchCompat switch1;
     boolean nightMODE;
     SharedPreferences.Editor editor;
+    public static final String KEY_FONT_SIZE="FontSize";
+    public static final String SHARED_PREF_NAME="MyPref";
     Toolbar tb;
-    private SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences;
 
+    SeekBar seekBar;
+    TextView tvFontSize,tvFS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +37,14 @@ public class SettingActivity extends AppCompatActivity {
         switch1 = findViewById(R.id.switch1);
 
         tb = findViewById(R.id.tbSetting);
-
+        seekBar=findViewById(R.id.sbFontSize);
+        tvFontSize=findViewById(R.id.tvFontSize);
+        tvFS=findViewById(R.id.tvFS);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+//        changeFontSize();
         //we use sharePreferences to save mode if exit and go back again
         sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
         nightMODE = sharedPreferences.getBoolean("night", false);//light mode is the Default mode
@@ -58,6 +69,38 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
     }
+
+//    private void changeFontSize() {
+//        int intFontSize=sharedPreferences.getInt(KEY_FONT_SIZE,0);
+//        float a=tvFS.getTextSize();
+//        float b=switch1.getTextSize();
+//        if(intFontSize!=0){
+//            tvFontSize.setText(String.valueOf(intFontSize));
+//            tvFS.setTextSize(a*intFontSize/100);
+//            switch1.setTextSize(b*intFontSize/100);
+//            seekBar.setProgress(seekBar.getProgress()*intFontSize/100);
+//        }
+//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                tvFontSize.setText(String.valueOf(progress));
+//                tvFS.setTextSize(tvFS.getTextSize()*progress/100);
+//                switch1.setTextSize(switch1.getTextSize()*progress/100);
+//                editor.putInt(KEY_FONT_SIZE,progress);
+//                editor.apply();
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

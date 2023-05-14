@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.android_20.fragment.HomeFragment;
 import com.example.android_20.fragment.InfoFragment;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     BottomNavigationView mnBottom;
     Toolbar tb;
     SharedPreferences sharedPreferences;
+    int FontSize;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -50,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(tb);
         mnBottom = findViewById(R.id.navMenu);
         mnBottom.setOnItemSelectedListener(getListener());
-
+//        sharedPreferences = getSharedPreferences(SettingActivity.SHARED_PREF_NAME, MODE_PRIVATE);
+//        FontSize = sharedPreferences.getInt(SettingActivity.KEY_FONT_SIZE, -1);
         //set default
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_fragment, new HomeFragment());
@@ -112,9 +115,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
         {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
-            super.onBackPressed();
         }
+//        else {
+//            super.onBackPressed();
+//        }
 
     }
 

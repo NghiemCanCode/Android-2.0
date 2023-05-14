@@ -45,6 +45,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
     int position = 0;
     public int correct = 0;
     public Quizz currentQuizz;
+    int stop=0;
     public ExamQuizAtivity(){
         super(R.layout.activity_lesson_quiz);
     }
@@ -102,7 +103,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
                     Intent intent=new Intent(ExamQuizAtivity.this, MainActivity.class);
                     startActivity(intent);
                 } else if (position==5) {
-
+                    stop=1;
                     Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
                     Bundle bundle=new Bundle();
                     intent.putExtra("correct",correct);
@@ -178,12 +179,15 @@ public class ExamQuizAtivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
-                    Bundle bundle=new Bundle();
-                    intent.putExtra("correct",correct);
-                    bundle.putSerializable("ArrayList",listQuizzExam);
-                    intent.putExtra("Bundle",bundle);
-                    startActivity(intent);
+                    if(stop==0){
+                        Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
+                        Bundle bundle=new Bundle();
+                        intent.putExtra("correct",correct);
+                        bundle.putSerializable("ArrayList",listQuizzExam);
+                        intent.putExtra("Bundle",bundle);
+                        startActivity(intent);
+                    }
+
                 }
             };
             countDownTimer.start();
@@ -197,6 +201,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
+                stop=1;
                 finish();
                 return true;
             default:
