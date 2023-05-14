@@ -34,7 +34,7 @@ public class QuizzResultActivity extends AppCompatActivity {
         btnViewResult = findViewById(R.id.btnWatchResult);
         tvScore = findViewById(R.id.tvResultScore);
         circularProgressBar = findViewById(R.id.circularProgressBar);
-        int score=getIntent().getIntExtra("correct",0);
+        int score =getIntent().getIntExtra("correct",0);
         circularProgressBar.setProgress(score);
         tvScore.setText(score + "/5");
         resultList = new ArrayList<>();

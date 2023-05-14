@@ -25,34 +25,30 @@ import java.util.Random;
 
 
 public class QuizzExamFragment extends Fragment {
-    private View view;
     TextView tvQuestion,tvQuestions;
     Quizz quizz;
-
     Button btnOP1,btnOP2,btnOP3,btnOP4;
 
     ArcheryDB db;
     ExamQuizAtivity examQuizAtivity;
-
-
     public QuizzExamFragment(){}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.quizzexam_fragment, container, false);
+        View view = inflater.inflate(R.layout.quizzexam_fragment, container, false);
         tvQuestion = view.findViewById(R.id.tvQuestion);
         btnOP1 = view.findViewById(R.id.btnOP1);
         btnOP2 = view.findViewById(R.id.btnOP2);
         btnOP3 = view.findViewById(R.id.btnOP3);
         btnOP4 = view.findViewById(R.id.btnOP4);
-        tvQuestions=view.findViewById(R.id.tvQuestions);
+        tvQuestions= view.findViewById(R.id.tvQuestions);
         db=new ArcheryDB(getContext());
         db.copyDatabase();
 
         examQuizAtivity = (ExamQuizAtivity) getActivity();
         quizz = examQuizAtivity.currentQuizz;
-        tvQuestions.setText(String.valueOf(examQuizAtivity.getPosition()+1)+"/5");
+        tvQuestions.setText(examQuizAtivity.getPosition() + 1 +"/5");
 
 
         if (quizz == null) {
