@@ -23,9 +23,7 @@ public class QuizzResultActivity extends AppCompatActivity {
     TextView tvScore;
     CircularProgressBar circularProgressBar;
     ArrayList<Quizz> resultList;
-    QuizzExamFragment quizzExamFragment;
-    ExamQuizAtivity examQuizAtivity;
-    public Quizz currentQuizz;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +41,6 @@ public class QuizzResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent= new Intent(QuizzResultActivity.this, MainActivity.class);
                 startActivity(intent);
-                finish();
 
             }
         });
