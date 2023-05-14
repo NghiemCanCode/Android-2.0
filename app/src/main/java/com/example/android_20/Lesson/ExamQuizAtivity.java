@@ -111,14 +111,6 @@ public class ExamQuizAtivity extends AppCompatActivity {
                     intent.putExtra("Bundle",bundle);
                     startActivity(intent);
                 }
-//                if(position==5){
-//                    Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
-//                    Bundle bundle=new Bundle();
-//                    intent.putExtra("correct",correct);
-//                    bundle.putSerializable("ArrayList",listQuizzExam);
-//                    intent.putExtra("Bundle",bundle);
-//                    startActivity(intent);
-//                }
                 else {
                     if(position>0){
                         btnPre.setEnabled(true);
