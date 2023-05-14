@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     style="@style/SCREEN"
     tools:context=".fragment.TextFragment">
-
-
     <TextView
         android:id="@+id/tvTest"
         android:layout_width="wrap_content"

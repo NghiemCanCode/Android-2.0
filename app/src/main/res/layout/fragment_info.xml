@@ -33,7 +33,6 @@
 
 
         android:textStyle="bold"
-        android:textColor="@color/black"
         android:textSize="22sp"
         android:layout_marginStart="36dp"
 
@@ -153,8 +152,8 @@
         app:layout_constraintTop_toBottomOf="@+id/vcD"
         android:text="Top 5 Câu Sai Nhiều:"
         android:textStyle="bold"
-        android:textColor="@color/black"
         android:textSize="22sp"
+        style="@style/TEXT"
         android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
 />
