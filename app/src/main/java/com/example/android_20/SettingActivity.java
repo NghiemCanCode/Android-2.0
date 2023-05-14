@@ -23,11 +23,10 @@ public class SettingActivity extends AppCompatActivity {
     SwitchCompat switch1;
     boolean nightMODE;
     SharedPreferences.Editor editor;
-    public static final String KEY_FONT_SIZE="FontSize";
-    public static final String SHARED_PREF_NAME="MyPref";
+    public static final String KEY_FONT_SIZE = "FontSize";
+    public static final String SHARED_PREF_NAME = "MyPref";
     Toolbar tb;
     SharedPreferences sharedPreferences;
-
     SeekBar seekBar;
     TextView tvFontSize,tvFS;
     @Override
@@ -37,16 +36,16 @@ public class SettingActivity extends AppCompatActivity {
         switch1 = findViewById(R.id.switch1);
 
         tb = findViewById(R.id.tbSetting);
-        seekBar=findViewById(R.id.sbFontSize);
-        tvFontSize=findViewById(R.id.tvFontSize);
-        tvFS=findViewById(R.id.tvFS);
+        seekBar = findViewById(R.id.sbFontSize);
+        tvFontSize = findViewById(R.id.tvFontSize);
+        tvFS = findViewById(R.id.tvFS);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
-        editor=sharedPreferences.edit();
+ //       sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 //        changeFontSize();
         //we use sharePreferences to save mode if exit and go back again
         sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         nightMODE = sharedPreferences.getBoolean("night", false);//light mode is the Default mode
 
         if (nightMODE) {

@@ -19,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.android_20.fragment.HomeFragment;
 import com.example.android_20.fragment.InfoFragment;
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
     @NonNull
     private NavigationBarView.OnItemSelectedListener getListener() {
         return item -> {
@@ -111,15 +109,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
         {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-//        else {
-//            super.onBackPressed();
-//        }
-
     }
 
     @Override
@@ -150,7 +143,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     void addDialog(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
+        boolean nightMODE = sharedPreferences.getBoolean("night", false);
+        AlertDialog.Builder alertDialog;
+        if(nightMODE){
+            alertDialog = new AlertDialog.Builder(this, com.google.android.material.R.style.Theme_Material3_Dark_Dialog);
+        }
+        else alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Khôi phục mặc định");
 
         LayoutInflater inflater = this.getLayoutInflater();
@@ -163,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             sharedPreferences.edit().clear().apply();
             Intent i = new Intent(MainActivity.this, SplashActivity.class);
             startActivity(i);
+            finish();
         });
         alertDialog.setNegativeButton("Huỷ", (dialog, which) -> {
             dialog.dismiss();
@@ -170,5 +170,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         alertDialog.create();
         alertDialog.show();
     }
-
 }
