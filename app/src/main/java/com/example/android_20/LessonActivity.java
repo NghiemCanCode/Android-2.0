@@ -42,7 +42,6 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     RecyclerView rvListC;
     ArrayList<Lesson> lstLesson;
     LessonAdapter lessonAdapter;
-
     ArcheryDB archeryDB;
     Toolbar tb;
     int Grade, Subject;

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id = "@+id/cvInfoItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
+    <TextView
+        android:id = "@+id/tvInfoItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:textSize="18sp"
+        android:maxLength="30"
+        android:layout_gravity="center|start"
+        android:layout_marginStart="10dp"
+        android:padding="10dp"
+        android:textStyle="italic|bold"
+        />
+        <TextView
+            android:id = "@+id/tvInfoItem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:text="1"
+            android:textSize="18sp"
+            android:background="@drawable/baseline_circle_24"
+            android:padding="12sp"
+            android:layout_gravity="end|center"
+            android:gravity="center"
+
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end|center"
+        android:src="@drawable/baseline_arrow_right_24"/>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
