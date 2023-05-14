@@ -44,9 +44,8 @@
 
         android:text="Đây là lần đầu sử dụng hoặc bạn vừa xóa dữ liệu của ứng dụng
 vui lòng tiến hành chọn lớp"
-
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1SecondSplash" />
 

@@ -28,38 +28,45 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tbLessonContent"
-        android:textSize="24sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:gravity="center"/>
 
     <TextView
         android:id="@+id/tvLessonDetail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10pt"
         android:gravity="center"
         style="@style/TEXT"
+        android:textSize="18sp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+
+        android:text="Test thoi lam gia cang"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvLessonNameDetail"
         app:layout_constraintVertical_bias="0.05" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id ="@+id/btQuestion"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginBottom="40dp"
         android:text="Câu hỏi ôn tập"
-        android:textColor="@color/white"
         style="@style/BUTTON"
         android:textStyle="bold"
-        android:backgroundTint="#04AA6D"
+        android:padding="20dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/teal_200"
+        android:textColor="@color/black"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         />

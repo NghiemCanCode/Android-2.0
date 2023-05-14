@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LessonActivity"
-    android:background="#f7f3eb">
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id ="@+id/tbLessonMain"
@@ -19,7 +19,6 @@
         app:title="Nội dung"
         android:background="#03ef62"
         />
-
 
     <androidx.appcompat.widget.Toolbar
         android:id ="@+id/tbLessonMenu"
@@ -33,6 +32,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        style="@style/SCREEN"
         android:id="@+id/rvLesson"
         android:layout_width="0dp"
         android:layout_height="0dp"

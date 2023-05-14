@@ -23,8 +23,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
-
-
     <TextView
         android:id="@+id/tvDiem"
         style="@style/TEXT"

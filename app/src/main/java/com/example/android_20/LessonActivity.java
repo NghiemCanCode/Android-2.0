@@ -44,7 +44,6 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
     LessonAdapter lessonAdapter;
 
     ArcheryDB archeryDB;
-    ArrayList<Lesson> searchList;
     Toolbar tb;
     int Grade, Subject;
     SharedPreferences sharedPreferences;
@@ -120,7 +119,6 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         super.onResume();
     }
 
-
 //    @Override
 //    protected void onStop() {
 //        resetData();
@@ -129,77 +127,22 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //searchview
-        //lay menu ra
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_view, menu);
-//        menu.getItem(0).setIcon(R.drawable.baseline_search_24);
+      getMenuInflater().inflate(R.menu.search_view, menu);
+      SearchView searchView = (SearchView) menu.findItem(R.id.mnSearch).getActionView();
+      searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+          @Override
+          public boolean onQueryTextSubmit(String query) {
+              Toast.makeText(LessonActivity.this, query, Toast.LENGTH_SHORT).show();
+              return false;
+          }
 
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);//truy cap den dich vu tim kiem cua he thong
-        MenuItem menuItem = menu.findItem(R.id.mnSearch);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));//lay info tim kiem, lien ket doi tuong searchview voi thanh phan tim kiem cua he thong
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(LessonActivity.this);
-        rvListC.setLayoutManager(layoutManager);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {/// Xử lý khi người dùng nhấn nút tìm kiếm trên bàn phím
-                searchList = new ArrayList<>();
-                if(query.length()>0){
-                    for (int i = 0; i < lstLesson.size(); i++){
-                        if(lstLesson.get(i).getName().toUpperCase().contains(query.toUpperCase())){
-                           Lesson lesson = new Lesson();
-                           lesson.setName(lstLesson.get(i).getName());
-                           lesson.setIDLesson(lstLesson.get(i).getIDLesson());
-                           lesson.setUnit(lstLesson.get(i).getUnit());
-                           searchList.add(lesson);
-                        }
-                    }
-                    lstLesson.clear();
-                    lstLesson.addAll(searchList);
-                    lessonAdapter.notifyDataSetChanged();
-
-                }
-                else {
-                    lstLesson.clear();
-                    lstLesson.addAll(searchList);
-                    lessonAdapter.notifyDataSetChanged();
-
-                }
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {// Xử lý khi người dùng nhập văn bản vào thanh tìm kiếm
-                searchList = new ArrayList<>();
-                if(newText.length()>0){
-                    for (int i = 0; i < lstLesson.size(); i++){
-                        if(lstLesson.get(i).getName().toUpperCase().contains(newText.toUpperCase())){
-
-                            Lesson lesson = new Lesson();
-                            lesson.setName(lstLesson.get(i).getName());
-                            lesson.setIDLesson(lstLesson.get(i).getIDLesson());
-                            lesson.setUnit(lstLesson.get(i).getUnit());
-                            searchList.add(lesson);
-                        }
-                    }
-                    lstLesson.clear();
-                    lstLesson.addAll(searchList);
-                    lessonAdapter.notifyDataSetChanged();
-
-                }
-                else {
-                    lstLesson.clear();
-                    lstLesson.addAll(searchList);
-                    lessonAdapter.notifyDataSetChanged();
-
-                }
-                return false;
-            }
-        });
+          @Override
+          public boolean onQueryTextChange(String newText) {
+              lessonAdapter.getFilter().filter(newText);
+              //Log.d("AAAA", newText);
+              return false;
+          }
+      });
             return super.onCreateOptionsMenu(menu);
     }
 
