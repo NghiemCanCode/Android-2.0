@@ -42,7 +42,6 @@
         android:textSize="18sp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-
         android:text="Test thoi lam gia cang"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -64,9 +63,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/teal_200"
-        android:textColor="@color/black"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         />

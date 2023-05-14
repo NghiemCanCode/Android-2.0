@@ -8,7 +8,6 @@
         android:id = "@+id/cvInfoItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +25,7 @@
         android:layout_gravity="center|start"
         android:layout_marginStart="10dp"
         android:padding="10dp"
+        style="@style/TEXT"
         android:textStyle="italic|bold"
         />
         <TextView
@@ -39,7 +39,6 @@
             android:padding="12sp"
             android:layout_gravity="end|center"
             android:gravity="center"
-
             android:textColor="@color/white"
             android:textStyle="bold"
             />

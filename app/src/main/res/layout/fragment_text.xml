@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     style="@style/SCREEN"
     tools:context=".fragment.TextFragment">
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="270dp"
