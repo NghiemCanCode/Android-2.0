@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.example.android_20.ArcheryDB;
 
-import com.example.android_20.NoteActivity;
 import com.example.android_20.NoteListActivity;
 import com.example.android_20.R;
 import com.example.android_20.model.Lesson;
@@ -73,6 +72,16 @@ public class LessonDetailActivity extends AppCompatActivity {
             menu.getItem(1).setIcon(R.drawable.baseline_star_border_24);
         }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
+        db.updateLessonMarked(ls, flag);
+        ls.setMarked(flag);
+        db.updateLessonCheck(ls);
+        finish();
+        super.onBackPressed();
     }
 
     @Override

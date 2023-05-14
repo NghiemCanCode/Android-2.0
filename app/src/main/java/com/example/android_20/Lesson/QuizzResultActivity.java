@@ -41,6 +41,7 @@ public class QuizzResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent= new Intent(QuizzResultActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });

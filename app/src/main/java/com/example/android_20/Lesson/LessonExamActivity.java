@@ -23,8 +23,6 @@ import com.example.android_20.model.Lesson;
 import java.util.ArrayList;
 
 public class LessonExamActivity extends AppCompatActivity {
-
-
     private String Subject="";
     private int IDSubject;
     CardView cardNV, cardLS, cardDL;

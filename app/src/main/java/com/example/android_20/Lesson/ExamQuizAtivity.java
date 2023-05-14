@@ -4,11 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
@@ -16,18 +14,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.android_20.ArcheryDB;
 import com.example.android_20.MainActivity;
-import com.example.android_20.QuizzFragment.QuizzAdapter;
 import com.example.android_20.QuizzFragment.QuizzExamFragment;
-import com.example.android_20.QuizzFragment.QuizzFragment;
 import com.example.android_20.R;
-
-import com.example.android_20.model.Notes;
-
-import com.example.android_20.fragment.HomeFragment;
 
 import com.example.android_20.model.Quizz;
 
@@ -54,25 +45,26 @@ public class ExamQuizAtivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_quiz_ativity);
-        btnNext=findViewById(R.id.btnNext);
-        btnPre=findViewById(R.id.btnPre);
-        db=new ArcheryDB(this);
+        btnNext = findViewById(R.id.btnNext);
+        btnPre = findViewById(R.id.btnPre);
+        db = new ArcheryDB(this);
 
         btnPre.setEnabled(true);
         btnNext.setEnabled(true);
         listQuizzExam = new ArrayList<>();
-        if(getIntent().getIntExtra("Result",0)==1){
-            Result=1;
+        if(getIntent().getIntExtra("Result",0) == 1){
+            Result = 1;
             Bundle args=getIntent().getBundleExtra("Bundle");
             listQuizzExam=args.getSerializable("ArrayList", ArrayList.class);
         }
         else {
-            quizzes=db.quizzListExam(getIntent().getIntExtra("Class",0),getIntent().getIntExtra("IDSubject",0));
-            while (listQuizzExam.size()<=4){
+            quizzes = db.quizzListExam(getIntent().getIntExtra("Class",0),
+                    getIntent().getIntExtra("IDSubject",0));
+            while (listQuizzExam.size() <= 4){
                 int dup = 0;
                 int i = new Random().nextInt(quizzes.size()-1);
                 for(int j = 0; j < listQuizzExam.size();j++){
-                    if(listQuizzExam.get(j)==quizzes.get(i))
+                    if(listQuizzExam.get(j) == quizzes.get(i))
                         dup++;
                 }
                 if(dup == 0){
@@ -91,7 +83,7 @@ public class ExamQuizAtivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.FM, new QuizzExamFragment());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        if(position==0){
+        if(position == 0){
             btnPre.setEnabled(false);
         }
 
@@ -99,11 +91,11 @@ public class ExamQuizAtivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 position++;
-                if (position==5&&Result==1){
-                    Intent intent=new Intent(ExamQuizAtivity.this, MainActivity.class);
+                if (position == 5 && Result == 1){
+                    Intent intent = new Intent(ExamQuizAtivity.this, MainActivity.class);
                     startActivity(intent);
-                } else if (position==5) {
-                    stop=1;
+                } else if (position == 5) {
+                    stop = 1;
                     Intent intent= new Intent(ExamQuizAtivity.this,QuizzResultActivity.class);
                     Bundle bundle=new Bundle();
                     intent.putExtra("correct",correct);
@@ -112,19 +104,19 @@ public class ExamQuizAtivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    if(position>0){
+                    if(position > 0){
                         btnPre.setEnabled(true);
                         btnPre.setBackgroundResource(R.drawable.roung_back_green);
                     }
-                    if(position==5 && Result==1){
+                    if(position == 5 && Result == 1){
                         Intent intent=new Intent(ExamQuizAtivity.this, MainActivity.class);
                         startActivity(intent);
+                        finish();
                     }
-                    if(position==4 && Result==1){
+                    if(position == 4 && Result == 1){
                         btnNext.setText("Trang chủ");
-                    } else if (position==4) {
+                    } else if (position == 4) {
                         btnNext.setText("Nộp bài");
-
                     }
                     currentQuizz = listQuizzExam.get(position);
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -138,14 +130,14 @@ public class ExamQuizAtivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 position--;
-                if(position<4){
+                if(position < 4){
                     btnNext.setText("Câu tiếp theo");
                 }
 
-                if(position==0){
+                if(position == 0){
                     btnPre.setEnabled(false);
                 }
-                currentQuizz=listQuizzExam.get(position);
+                currentQuizz = listQuizzExam.get(position);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.FM, new QuizzExamFragment(), null);
                 fragmentTransaction.commit();

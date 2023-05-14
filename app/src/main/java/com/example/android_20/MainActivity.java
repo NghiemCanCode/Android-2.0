@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -150,7 +151,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     void addDialog(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        sharedPreferences = getSharedPreferences(Utils.filename, Context.MODE_PRIVATE);
+        boolean nightMODE = sharedPreferences.getBoolean("night", false);
+        AlertDialog.Builder alertDialog;
+        if(nightMODE){
+            alertDialog = new AlertDialog.Builder(this, com.google.android.material.R.style.Theme_Material3_Dark_Dialog);
+        }
+        else alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Khôi phục mặc định");
 
         LayoutInflater inflater = this.getLayoutInflater();
@@ -163,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             sharedPreferences.edit().clear().apply();
             Intent i = new Intent(MainActivity.this, SplashActivity.class);
             startActivity(i);
+            finish();
         });
         alertDialog.setNegativeButton("Huỷ", (dialog, which) -> {
             dialog.dismiss();
