@@ -7,6 +7,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+        <androidx.appcompat.widget.Toolbar
+            android:id ="@+id/tbMainMenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Trang Chủ"
+            android:background="#03ef62"
+            />
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
@@ -26,15 +36,6 @@
                     android:id="@+id/nav_home"
                     />
         </androidx.drawerlayout.widget.DrawerLayout>
-        <androidx.appcompat.widget.Toolbar
-            android:id ="@+id/tbMainMenu"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="Trang Chủ"
-            android:background="#03ef62"
-            />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
