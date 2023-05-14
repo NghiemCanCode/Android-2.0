@@ -11,7 +11,6 @@ import com.example.android_20.model.Notes;
 import com.example.android_20.model.Question;
 import com.example.android_20.model.Quizz;
 import com.example.android_20.model.QuizzList;
-import com.example.android_20.model.Subject;
 
 import java.io.File;
 import java.io.IOException;
@@ -291,7 +290,7 @@ public class ArcheryDB {
     public ArrayList<Question> get5Wrong(int Class){  // nhan 5 cau sai nhieu nhat
         ArrayList<Question> get5wrongs = new ArrayList<>();
         db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM tblQuestion WHERE IDClass == " + Class + " ORDER BY WrongCount DESC LIMIT 5", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM tblQuestion WHERE IDClass == " + Class + " AND WrongCount != 0 ORDER BY WrongCount DESC LIMIT 5", null);
 
         while (cursor.moveToNext()){
             int idQuestion = cursor.getInt(0);
@@ -322,7 +321,7 @@ public class ArcheryDB {
             String content = cursor.getString(5);
             int marked = cursor.getInt(6);
             int viewed = cursor.getInt(7);
-            lesson =new Lesson(idLesson, idClass, idSubject, name, unit, content, marked, viewed);
+            lesson = new Lesson(idLesson, idClass, idSubject, name, unit, content, marked, viewed);
         }
         cursor.close();
         db.close();

@@ -30,8 +30,8 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
     public LessonAdapter(ArrayList<Lesson> lstLesson, Listener listener) {
         this.lstLesson = lstLesson;
-        this.listener =listener;
-        this.lstLessonold= lstLesson;
+        this.listener = listener;
+        this.lstLessonold = lstLesson;
     }
     @NonNull
     @Override
@@ -40,8 +40,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         LayoutInflater inflater = LayoutInflater.from(context);
         View userView = inflater.inflate(R.layout.lessonlayout, parent, false);
 
-        LessonViewHolder lessonViewHolder = new LessonViewHolder(userView);
-        return lessonViewHolder;
+        return new LessonViewHolder(userView);
     }
 
     @Override
