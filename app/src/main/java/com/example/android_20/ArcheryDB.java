@@ -87,7 +87,7 @@ public class ArcheryDB {
                 + lesson.getIDLesson(), null);
         db.close();
     }
-    public void updateLessonCheck(Lesson lesson, int Check){
+    public void updateLessonCheck(Lesson lesson){
         db = openDB();
         ContentValues values = new ContentValues();
         values.put("IDClass", lesson.getIDClass());

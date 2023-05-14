@@ -24,7 +24,6 @@ import com.example.android_20.model.Lesson;
 
 import java.util.Objects;
 
-
 public class LessonDetailActivity extends AppCompatActivity {
     TextView tvDetailC, tvDetailNameC;
     ArcheryDB db;
@@ -41,7 +40,7 @@ public class LessonDetailActivity extends AppCompatActivity {
         tvDetailNameC = findViewById(R.id.tvLessonNameDetail);
 
         btQuestionC = findViewById(R.id.btQuestion);
-
+        db = new ArcheryDB(this);
         Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
         setSupportActionBar(tb);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -78,12 +77,12 @@ public class LessonDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        db = new ArcheryDB(this);
         switch (item.getItemId()){
             case android.R.id.home:
                 Lesson ls = getIntent().getSerializableExtra("Marked", Lesson.class);
                 db.updateLessonMarked(ls, flag);
-                db.updateLessonCheck(ls, 1);
+                ls.setMarked(flag);
+                db.updateLessonCheck(ls);
                 finish();
                 return true;
             case R.id.itNote:

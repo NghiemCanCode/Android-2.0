@@ -106,16 +106,11 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
         lessonAdapter.notifyDataSetChanged();
     }
 
-//    @Override
-//    protected void onPause() {
-//        resetData();
-//        super.onPause();
-//    }
 
     @Override
     protected void onResume() {
-        resetData();
         super.onResume();
+        resetData();
     }
 
 //    @Override
@@ -153,39 +148,30 @@ public class LessonActivity extends AppCompatActivity implements LessonAdapter.L
                     finish();
                     return true;
                 case R.id.mnSortID:
-                    Collections.sort(lstLesson, new Comparator<Lesson>() {
-                        @Override
-                        public int compare(Lesson lesson1, Lesson lesson2) {
-                            if(lesson1.getUnit() > lesson2.getUnit()){
-                                return 1;
-                            }else {
-                                if(lesson1.getIDLesson()==lesson2.getIDLesson()){
-                                    return 0;
-                                }else return -1;
-                            }
+                    Collections.sort(lstLesson, (lesson1, lesson2) -> {
+                        if(lesson1.getUnit() > lesson2.getUnit()){
+                            return 1;
+                        }else {
+                            if(lesson1.getIDLesson()==lesson2.getIDLesson()){
+                                return 0;
+                            }else return -1;
                         }
                     });
                     lessonAdapter.notifyDataSetChanged();
                     Toast.makeText(LessonActivity.this, "Sắp xếp thành công", Toast.LENGTH_SHORT).show();
                     break;
                 case  R.id.mnSortName:
-                    Collections.sort(lstLesson, new Comparator<Lesson>() {
-                        @Override
-                        public int compare(Lesson lesson1, Lesson lesson2) {
-                            return lesson1.getName().compareToIgnoreCase(lesson2.getName());//compare sap xep theo chu cai alphabet
-                        }
+                    Collections.sort(lstLesson, (lesson1, lesson2) -> {
+                        return lesson1.getName().compareToIgnoreCase(lesson2.getName());//compare sap xep theo chu cai alphabet
                     });
                     lessonAdapter.notifyDataSetChanged();
                     Toast.makeText(LessonActivity.this, "Sắp xếp thành công", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.mnSortMarked:
-                    Collections.sort(lstLesson, new Comparator<Lesson>() {
-                        @Override
-                        public int compare(Lesson lesson1, Lesson lesson2) {
-                                if(lesson1.getMarked() == 1)
-                                    return -1;
-                                else return 1;
-                        }
+                    Collections.sort(lstLesson, (lesson1, lesson2) -> {
+                            if(lesson1.getMarked() == 1)
+                                return -1;
+                            else return 1;
                     });
                     lessonAdapter.notifyDataSetChanged();
                     Toast.makeText(LessonActivity.this, "Sắp xếp thành công", Toast.LENGTH_SHORT).show();
